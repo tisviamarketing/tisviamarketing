@@ -1,16 +1,18 @@
-## Hi there 👋
+# tisviamarketing
 
-<!--
-**tisviamarketing/tisviamarketing** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Two static sites, one repo. Each one is its own Vercel project.
 
-Here are some ideas to get you started:
+| Folder    | Domain                        | What it is                          |
+|-----------|-------------------------------|-------------------------------------|
+| `site/`   | tisviamarketing.in            | One-page hero. Meta ads agency.     |
+| `academy/`| academy.tisviamarketing.in    | Main site. Placeholder for now.     |
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+Plain HTML + CSS. No build step. No dependencies.
+
+## Vercel settings per project
+- Framework Preset: **Other**
+- Root Directory: `site` or `academy`
+- Build Command: *(empty)*
+- Output Directory: *(empty)*
+
+`PROFILE-README.md` is the old GitHub profile readme, kept for reference.

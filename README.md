@@ -1,18 +1,7 @@
-# tisviamarketing
+### Tisvia Marketing
 
-Two static sites, one repo. Each one is its own Vercel project.
+Meta ads agency. We run Facebook and Instagram ads for service businesses.
 
-| Folder    | Domain                        | What it is                          |
-|-----------|-------------------------------|-------------------------------------|
-| `site/`   | tisviamarketing.in            | One-page hero. Meta ads agency.     |
-| `academy/`| academy.tisviamarketing.in    | Main site. Placeholder for now.     |
+🌐 **[tisviamarketing.in](https://tisviamarketing.in)** · 🎓 **[academy.tisviamarketing.in](https://academy.tisviamarketing.in)**
 
-Plain HTML + CSS. No build step. No dependencies.
-
-## Vercel settings per project
-- Framework Preset: **Other**
-- Root Directory: `site` or `academy`
-- Build Command: *(empty)*
-- Output Directory: *(empty)*
-
-`PROFILE-README.md` is the old GitHub profile readme, kept for reference.
+<sub>Both sites live in this repo and deploy from `main`. See [DEPLOY.md](DEPLOY.md).</sub>

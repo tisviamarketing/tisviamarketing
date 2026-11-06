@@ -156,8 +156,8 @@ export const FAQS: { q: string; a: string }[] = [
     a: 'The 10-day mentorship programme is ₹9,999 per person. Any live advertising spend during the practical sessions is separate from the fee.',
   },
   {
-    q: 'When do the batches run?',
-    a: 'There is a morning batch and an evening batch, each two hours a day for ten days. Message us on WhatsApp for the next start date and the exact session times.',
+    q: 'When does the next batch start?',
+    a: 'Message us on WhatsApp for the next start date and the session times. The programme runs for ten days with a two-hour live session each day.',
   },
   {
     q: 'Will I receive a certificate?',
@@ -199,16 +199,41 @@ export const STYLE = [
 
 /**
  * Enrolment terms.
- * TODO (client): add the next batch start date and the exact session times
- * once they are fixed — they are not in the brochure.
+ * TODO (client): add the batch start date and session times once fixed.
+ * Morning and evening batches exist but are deliberately not published yet.
  */
 export const ENROLMENT = {
   fee: '₹9,999',
   feeUnit: 'per person',
   feeAmount: '9999',
   currency: 'INR',
-  batches: [
-    { h: 'Morning batch', p: 'Two hours each morning, ten days running.' },
-    { h: 'Evening batch', p: 'Two hours each evening, for people who work days.' },
-  ],
 } as const;
+
+/**
+ * Message screenshots supplied by the client.
+ * The phone number visible in the class-group screenshot is blurred in the
+ * cropped file; do not re-crop from the originals without redacting it again.
+ */
+export const TESTIMONIALS = [
+  {
+    src: '/t/t1.jpg',
+    w: 620,
+    h: 672,
+    alt: 'LinkedIn message from a performance marketing student: "I am one of your performance marketing student from HACA, your classes are interesting and happy to to learn from you."',
+    cap: 'A performance marketing student, on LinkedIn.',
+  },
+  {
+    src: '/t/t2.jpg',
+    w: 620,
+    h: 954,
+    alt: 'WhatsApp class group showing a session reminder and a student replying "It was great session. Great insights."',
+    cap: 'Inside a live class group.',
+  },
+  {
+    src: '/t/t3.jpg',
+    w: 342,
+    h: 605,
+    alt: 'WhatsApp message from a client reporting cost per result falling from ₹23 to ₹7 and 74 enquiries from ₹550 spent.',
+    cap: 'A client, on a campaign the mentor ran.',
+  },
+] as const;

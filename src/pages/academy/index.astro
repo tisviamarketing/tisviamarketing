@@ -2,7 +2,7 @@
 import Layout from '../../components/Layout.astro';
 import Icon from '../../components/Icon.astro';
 import { CONTACT, SITES, wa } from '../../data/site';
-import { CURRICULUM, ENROLMENT, FAQS, STAGES, STYLE } from '../../data/academy';
+import { CURRICULUM, ENROLMENT, FAQS, STAGES, STYLE, TESTIMONIALS } from '../../data/academy';
 
 const title = 'Tisvia Marketing Academy — 10-Day Live Meta Ads Mentorship';
 const description =
@@ -349,6 +349,25 @@ const schema = [
       </div>
     </section>
 
+    <!-- ───────────────── testimonials ───────────────── -->
+    <section class="section" id="words">
+      <div class="wrap">
+        <p class="eyebrow">In their own words</p>
+        <h2>Messages from students and clients.</h2>
+        <p class="lede" style="margin-top:18px">
+          Unedited screenshots from students and clients. Personal phone numbers have been removed.
+        </p>
+        <div class="shots">
+          {TESTIMONIALS.map((t) => (
+            <figure>
+              <img src={t.src} width={t.w} height={t.h} alt={t.alt} loading="lazy" decoding="async" />
+              <figcaption>{t.cap}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <!-- ───────────────── inclusions ───────────────── -->
     <section class="section">
       <div class="wrap">
@@ -439,17 +458,12 @@ const schema = [
     <!-- ───────────────── cta ───────────────── -->
     <section class="section" id="enrol">
       <div class="wrap">
-        <p class="eyebrow">Fee &amp; batches</p>
+        <p class="eyebrow">Fee</p>
         <h2>{ENROLMENT.fee} {ENROLMENT.feeUnit}.</h2>
         <p class="lede" style="margin-top:18px">
-          The programme runs in two batches so you can take it around work. Message us on WhatsApp
-          for the next start date and the exact session times.
+          Ten days, two hours a day, twenty live hours in all. Message us on WhatsApp for the next
+          start date and the session times.
         </p>
-        <div class="grid grid--2 batches">
-          {ENROLMENT.batches.map((b) => (
-            <article class="card"><h3>{b.h}</h3><p>{b.p}</p></article>
-          ))}
-        </div>
         <p class="note" style="margin:18px 0 44px">
           Any live advertising spend during the practical sessions is separate from the programme fee.
         </p>
@@ -457,7 +471,7 @@ const schema = [
           <div>
             <p class="eyebrow" style="color:#c9d4ff">Tisvia Marketing Academy</p>
             <h2>Build your Meta Ads skillset.</h2>
-            <p class="cta__p">Tell us which batch suits you and we'll send the start date and joining details.</p>
+            <p class="cta__p">Message us and we'll send the next start date and joining details.</p>
           </div>
           <a class="btn cta__btn" href={enquiry} target="_blank" rel="noopener">
             <Icon name="whatsapp" /> Enquire on WhatsApp
@@ -510,9 +524,9 @@ const schema = [
     display: flex;
     align-items: center;
     gap: 24px;
-    min-height: 68px;
+    min-height: 62px;
   }
-  .bar__brand img { width: 112px; height: auto; }
+  .bar__brand img { width: 84px; height: auto; }
   .bar__nav {
     display: flex;
     gap: 26px;
@@ -699,7 +713,32 @@ const schema = [
   @media (max-width: 1040px) { .stages { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 680px)  { .stages { grid-template-columns: 1fr; } }
 
-  .batches { margin-top: 30px; }
+  /* ---- message screenshots ---- */
+  .shots {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 2.5vw, 28px);
+    align-items: start;
+  }
+  @media (max-width: 820px) { .shots { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .shots { grid-template-columns: 1fr; max-width: 420px; } }
+
+  .shots figure { margin: 0; }
+
+  .shots img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--bg-soft);
+  }
+
+  .shots figcaption {
+    margin-top: 12px;
+    font-size: 13.5px;
+    color: var(--muted);
+  }
   .stages__d {
     font-size: 12.5px;
     font-weight: 700;

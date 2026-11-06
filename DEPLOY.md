@@ -2,31 +2,32 @@
 
 **One** Vercel project serves both sites from the `main` branch of this repo.
 
-| URL                        | Serves                  |
-|----------------------------|-------------------------|
-| tisviamarketing.in         | `site/index.html`       |
-| academy.tisviamarketing.in | `site/academy/`         |
+| URL                        | Serves       |
+|----------------------------|--------------|
+| tisviamarketing.in         | `index.html` |
+| academy.tisviamarketing.in | `academy/`   |
 
 Plain HTML + CSS. No build step. No dependencies.
 
 ## Vercel project settings
 - Framework Preset: **Other**
-- Root Directory: **`site`**
+- Root Directory: **empty** (the repo root)
 - Build Command / Output Directory / Install Command: *(all empty)*
 
-Everything the site needs lives inside `site/`, including `vercel.json` —
-Vercel treats the Root Directory as the project root, so the config must
-sit in there, not at the repo root.
+Leave **Root Directory empty**. Every file the site needs sits at the repo
+root — `index.html`, `academy/` and `vercel.json`. If that setting is ever
+pointed at a subfolder, the files have to move into it as well, `vercel.json`
+included, or every URL 404s.
 
 Both domains are attached to this same project under **Settings → Domains**.
 
 ## How the split works
-`site/vercel.json` rewrites every request whose **Host** is
+`vercel.json` rewrites every request whose **Host** is
 `academy.tisviamarketing.in` into the `academy` folder. Every other host
-falls through to `site/index.html`, so the apex domain gets the landing page.
+falls through to `index.html`, so the apex domain gets the landing page.
 
 If the academy subdomain ever changes, update the `has.value` host in
-`site/vercel.json` — it is an exact string match.
+`vercel.json` — it is an exact string match.
 
 ## DNS (GoDaddy)
 Current live records:

@@ -1,0 +1,692 @@
+---
+import Layout from '../../components/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import { CONTACT, SITES, wa } from '../../data/site';
+import { CURRICULUM, FAQS, STAGES } from '../../data/academy';
+
+const title = 'Tisvia Marketing Academy — 10-Day Live Meta Ads Mentorship';
+const description =
+  'A 10-day live Meta Ads mentorship in Malayalam and English. Build, launch and optimise real campaigns with Ads Manager demonstrations, assignments and feedback.';
+
+const enquiry = wa("Hi, I'm interested in the 10-Day Meta Ads Mentorship Programme.");
+
+const quickStats = [
+  { n: '10 days', s: 'Programme duration' },
+  { n: '2 hours', s: 'Live session each day' },
+  { n: '20 hours', s: 'Total live training' },
+  { n: '10 tasks', s: 'Practical assignments' },
+];
+
+const mentorStats = [
+  { n: '4+', s: 'Years of experience' },
+  { n: '100+', s: 'Clients worked with globally' },
+  { n: '₹10 Cr', s: 'Advertising spend managed, up to' },
+  { n: '100+', s: 'Students trained' },
+];
+
+const programme = [
+  {
+    h: 'Who is it for?',
+    items: [
+      'Beginners entering digital marketing',
+      'Freelancers building a service skill',
+      'Business owners managing their ads',
+      'Marketers looking to upskill',
+    ],
+  },
+  {
+    h: 'What will you learn?',
+    items: [
+      'Plan and structure campaigns',
+      'Set up tracking and audiences',
+      'Create and launch ads',
+      'Analyse and optimise performance',
+    ],
+  },
+  {
+    h: 'How is it delivered?',
+    items: [
+      'Live interactive online sessions',
+      'Malayalam + English instruction',
+      'Ads Manager demonstrations',
+      'Assignments and feedback',
+    ],
+  },
+];
+
+const inclusions = [
+  {
+    h: 'Live learning',
+    items: ['10 live interactive sessions', '20 hours of training', 'Live Ads Manager demonstrations'],
+  },
+  {
+    h: 'Practice materials',
+    items: [
+      '10 practical assignments',
+      'Case studies and campaign examples',
+      'Reporting templates and checklists',
+      'Recordings of every session',
+    ],
+  },
+  {
+    h: 'Completion',
+    items: ['Campaign review and feedback', 'Final campaign project', 'Certificate of Completion*'],
+  },
+];
+
+const support = [
+  'WhatsApp learning community',
+  'Troubleshooting guidance for tracking issues, ad rejections and high CPL',
+  'Two weekly group doubt-clearing sessions during the first two weeks',
+  'One campaign setup or performance report review per student',
+  'Access to class recordings, checklists, assignments and reporting templates',
+  'Guidance on portfolio building, freelancing and client communication',
+];
+
+const project = [
+  { h: 'Campaign objective', p: 'Define the business goal and choose an appropriate campaign objective.' },
+  { h: 'Audience & creative', p: 'Present the audience approach, creative direction and ad messaging.' },
+  { h: 'Budget & optimisation', p: 'Outline the budget, performance measures and optimisation approach.' },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: '10-Day Meta Ads Mentorship Programme',
+    description,
+    url: `${SITES.academy}/`,
+    inLanguage: ['ml', 'en'],
+    teaches: [
+      'Meta Ads campaign structure',
+      'Meta Pixel and Conversions API tracking',
+      'Audience targeting and creative strategy',
+      'Lead generation and WhatsApp campaigns',
+      'Performance analysis, optimisation and scaling',
+    ],
+    provider: {
+      '@type': 'Organization',
+      '@id': `${SITES.academy}/#organization`,
+      name: 'Tisvia Marketing Academy',
+      url: SITES.academy,
+      logo: `${SITES.academy}/logo-academy.png`,
+      sameAs: [CONTACT.instagram, CONTACT.linkedin],
+      parentOrganization: { '@type': 'Organization', name: 'Tisvia Marketing', url: SITES.agency },
+    },
+    hasCourseInstance: {
+      '@type': 'CourseInstance',
+      courseMode: 'online',
+      courseWorkload: 'P10D',
+      inLanguage: ['ml', 'en'],
+      instructor: { '@type': 'Person', name: 'Tismin Manoj', sameAs: CONTACT.linkedin },
+    },
+    syllabusSections: CURRICULUM.map((d, i) => ({
+      '@type': 'Syllabus',
+      position: i + 1,
+      name: `Day ${d.n} — ${d.title}`,
+      description: d.points.join('. ') + '.',
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQS.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={`${SITES.academy}/`}
+  schema={schema}
+  ogImage={`${SITES.academy}/logo-academy.png`}
+>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="bar">
+    <div class="wrap bar__inner">
+      <a href="#top" class="bar__brand" aria-label="Tisvia Marketing Academy — top of page">
+        <img src="/logo-academy.png" width="752" height="402" alt="Tisvia Marketing Academy" fetchpriority="high" />
+      </a>
+      <nav class="bar__nav" aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#programme">Programme</a>
+        <a href="#curriculum">Curriculum</a>
+        <a href="#faq">FAQs</a>
+      </nav>
+      <a class="btn btn--solid bar__cta" href={enquiry} target="_blank" rel="noopener">Enquire</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ───────────────── hero ───────────────── -->
+    <section class="section hero" id="top">
+      <div class="wrap">
+        <p class="eyebrow">Live mentorship · Malayalam + English</p>
+        <h1>Learn Meta Ads.<br /><em>Build real campaigns.</em></h1>
+        <p class="lede hero__lede">
+          A 10-day live mentorship programme designed to help you understand Meta advertising, build
+          campaigns, read performance data and make informed optimisation decisions.
+        </p>
+        <div class="actions">
+          <a class="btn btn--solid" href={enquiry} target="_blank" rel="noopener">
+            <Icon name="whatsapp" /> Join the next batch
+          </a>
+          <a class="btn btn--line" href="#curriculum">See the curriculum</a>
+        </div>
+
+        <ul class="stats stats--hero">
+          {quickStats.map((s) => (
+            <li><b>{s.n}</b><span>{s.s}</span></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───────────────── about ───────────────── -->
+    <section class="section" id="about">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow">About the academy</p>
+          <h2>Learn by understanding the work behind the ads.</h2>
+          <p class="lede" style="margin-top:22px">
+            Tisvia Marketing Academy focuses on practical digital marketing education. The programme
+            combines structured lessons with live demonstrations and assignments so students can
+            apply what they learn to real campaign scenarios.
+          </p>
+          <p style="margin-top:16px">
+            The goal is not just to explain the Ads Manager interface. It is to help you understand
+            campaign objectives, audiences, creatives, tracking, performance metrics and
+            optimisation decisions.
+          </p>
+        </div>
+
+        <aside class="card mentor">
+          <p class="eyebrow" style="margin-bottom:10px">Your mentor</p>
+          <h3>Tismin Manoj</h3>
+          <p>
+            Founder and mentor at Tisvia Marketing Academy, with 4+ years of digital marketing
+            experience across multiple industries and campaign types.
+          </p>
+          <p>
+            Professional experience includes working with 100+ clients globally and managing up to
+            ₹10 crore in advertising spend.
+          </p>
+          <a class="inline-link" href={CONTACT.linkedin} target="_blank" rel="noopener">
+            View LinkedIn profile <Icon name="arrow" />
+          </a>
+          <p class="note">
+            The combined revenue figure associated with businesses the mentor has worked with is not
+            a claim of revenue generated solely by Tisvia or by advertising campaigns.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ───────────────── experience ───────────────── -->
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow">Experience &amp; learning</p>
+        <h2>Built around practical experience.</h2>
+        <p class="lede" style="margin-top:18px">
+          Learn from professional campaign experience and a mentorship format focused on
+          application, review and improvement.
+        </p>
+        <ul class="stats stats--big">
+          {mentorStats.map((s) => (
+            <li><b>{s.n}</b><span>{s.s}</span></li>
+          ))}
+        </ul>
+        <p class="note" style="margin-top:18px">
+          Client and campaign experience includes a mix of the mentor's professional work and Tisvia
+          Marketing projects.
+        </p>
+      </div>
+    </section>
+
+    <!-- ───────────────── programme ───────────────── -->
+    <section class="section" id="programme">
+      <div class="wrap">
+        <p class="eyebrow">The flagship programme</p>
+        <h2>10-Day Meta Ads Mentorship Programme</h2>
+        <p class="lede" style="margin-top:18px">
+          A structured, live online programme for beginners, freelancers, business owners and
+          working digital marketers who want to develop practical Meta Ads skills.
+        </p>
+        <div class="grid grid--3" style="margin-top:36px">
+          {programme.map((c) => (
+            <article class="card">
+              <h3>{c.h}</h3>
+              <ul class="ticks">
+                {c.items.map((i) => (
+                  <li><Icon name="check" />{i}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────── curriculum ───────────────── -->
+    <section class="section" id="curriculum">
+      <div class="wrap">
+        <p class="eyebrow">Day-by-day curriculum</p>
+        <h2>What you will cover in 10 days.</h2>
+        <p class="lede" style="margin-top:18px">
+          Each day combines concepts, live practical demonstrations, student practice and Q&amp;A.
+        </p>
+
+        <div class="days">
+          {CURRICULUM.map((d, i) => (
+            <details class="day" open={i === 0}>
+              <summary>
+                <span class="day__n">Day {d.n}</span>
+                <span class="day__t">{d.title}</span>
+                <span class="day__i" aria-hidden="true"><Icon name="plus" /></span>
+              </summary>
+              <div class="day__body">
+                <ul class="ticks">
+                  {d.points.map((p) => (
+                    <li><Icon name="check" />{p}</li>
+                  ))}
+                </ul>
+                <p class="assign"><b>Assignment</b> {d.assignment}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+
+        <p class="note" style="margin-top:22px">
+          Daily session format: 30 minutes of concepts and strategy, 45 minutes of live practical
+          demonstration, 30 minutes of student practice and assignment work, and 15 minutes of
+          Q&amp;A and feedback.
+        </p>
+      </div>
+    </section>
+
+    <!-- ───────────────── journey ───────────────── -->
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow">The learning journey</p>
+        <h2>From foundations to campaign execution.</h2>
+        <ol class="grid grid--4 stages">
+          {STAGES.map((s) => (
+            <li class="card">
+              <b class="stages__d">{s.days}</b>
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- ───────────────── inclusions ───────────────── -->
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow">Included in the programme</p>
+        <h2>Resources and support to reinforce your learning.</h2>
+        <div class="grid grid--3" style="margin-top:36px">
+          {inclusions.map((c) => (
+            <article class="card">
+              <h3>{c.h}</h3>
+              <ul class="ticks">
+                {c.items.map((i) => (
+                  <li><Icon name="check" />{i}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+        <p class="note" style="margin-top:20px">
+          *Certificate of Completion is awarded to students who complete the required assignments
+          and assessment. Session recordings are provided for every live class, so you can revisit
+          lessons and revise concepts afterwards.
+        </p>
+      </div>
+    </section>
+
+    <!-- ───────────────── support ───────────────── -->
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow">After the live programme</p>
+          <h2>Continue learning with post-programme support.</h2>
+          <p class="lede" style="margin-top:22px">
+            The programme brochure outlines a proposed 30-day support period to help students work
+            through questions as they apply what they have learned.
+          </p>
+        </div>
+        <article class="card">
+          <h3>Proposed 30-day support includes</h3>
+          <ul class="ticks">
+            {support.map((s) => (
+              <li><Icon name="check" />{s}</li>
+            ))}
+          </ul>
+          <p class="note">
+            Support replies are expected within 24–48 working hours. Reviews are educational and do
+            not include done-for-you campaign management or guaranteed results.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ───────────────── final project ───────────────── -->
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow">Final campaign project</p>
+        <h2>Bring the learning together.</h2>
+        <p class="lede" style="margin-top:18px">
+          As part of the programme, students work towards presenting a campaign strategy that
+          demonstrates their understanding of the key stages of Meta advertising.
+        </p>
+        <div class="grid grid--3" style="margin-top:36px">
+          {project.map((c) => (
+            <article class="card"><h3>{c.h}</h3><p>{c.p}</p></article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────── faq ───────────────── -->
+    <section class="section" id="faq">
+      <div class="wrap">
+        <p class="eyebrow">Frequently asked questions</p>
+        <h2>Before you enrol.</h2>
+        <div class="faq">
+          {FAQS.map((f) => (
+            <details>
+              <summary>
+                {f.q}
+                <span class="day__i" aria-hidden="true"><Icon name="plus" /></span>
+              </summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────── cta ───────────────── -->
+    <section class="section" id="enrol">
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <p class="eyebrow" style="color:#c9d4ff">Tisvia Marketing Academy</p>
+            <h2>Build your Meta Ads skillset.</h2>
+            <p class="cta__p">Get the next batch details, schedule and enrolment information.</p>
+          </div>
+          <a class="btn cta__btn" href={enquiry} target="_blank" rel="noopener">
+            <Icon name="whatsapp" /> Enquire on WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__inner">
+      <div>
+        <b>Tisvia Marketing Academy</b>
+        <span>Learn it. Build it. Grow it.</span>
+      </div>
+      <nav class="foot__links" aria-label="Elsewhere">
+        <a href={SITES.agency}>Tisvia Marketing</a>
+        <a href={CONTACT.instagram} target="_blank" rel="noopener">Instagram</a>
+        <a href={CONTACT.linkedin} target="_blank" rel="noopener">Mentor LinkedIn</a>
+      </nav>
+      <small>&copy; {new Date().getFullYear()} Tisvia Marketing Academy. All rights reserved.</small>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .skip {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--blue);
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 0 0 8px 0;
+    font-weight: 600;
+    z-index: 20;
+  }
+  .skip:focus { left: 0; }
+
+  /* ---- bar ---- */
+  .bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, .88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar__inner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    min-height: 68px;
+  }
+  .bar__brand img { width: 112px; height: auto; }
+  .bar__nav {
+    display: flex;
+    gap: 26px;
+    margin-left: auto;
+    font-size: 14.5px;
+    font-weight: 500;
+  }
+  .bar__nav a { color: var(--body); padding: 6px 0; transition: color .2s ease; }
+  .bar__nav a:hover { color: var(--ink); }
+  .bar__cta { min-height: 42px; padding: 0 20px; font-size: 14.5px; }
+
+  @media (max-width: 860px) {
+    .bar__nav { display: none; }
+    .bar__cta { margin-left: auto; }
+  }
+
+  /* ---- hero ---- */
+  .hero {
+    padding-top: clamp(56px, 9vw, 104px);
+    background:
+      radial-gradient(56rem 36rem at 86% -18%, var(--blue-wash), transparent 70%),
+      var(--bg);
+  }
+  .hero h1 {
+    font-size: clamp(38px, 6.6vw, 76px);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+  }
+  .hero h1 em { font-style: normal; color: var(--blue); }
+  .hero__lede { margin-top: 24px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+  /* ---- headings ---- */
+  h2 { font-size: clamp(27px, 3.6vw, 42px); }
+
+  /* ---- stats ---- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .stats li {
+    background: var(--bg);
+    padding: 22px clamp(16px, 2vw, 24px);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .stats b { font-size: clamp(21px, 2.6vw, 28px); color: var(--ink); letter-spacing: -0.035em; }
+  .stats span { font-size: 13.5px; color: var(--muted); line-height: 1.45; }
+  .stats--hero { margin-top: clamp(44px, 6vw, 64px); }
+  .stats--big { margin-top: 34px; }
+  .stats--big b { color: var(--blue); }
+
+  @media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ---- split ---- */
+  .split {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: clamp(26px, 4vw, 56px);
+    align-items: start;
+  }
+  @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+
+  .mentor h3 { font-size: 22px; margin-bottom: 12px; }
+  .mentor p { font-size: 15.5px; margin-bottom: 12px; }
+
+  .inline-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--blue-deep);
+    transition: gap .2s ease;
+  }
+  .inline-link :global(svg) { width: 15px; height: 15px; }
+  .inline-link:hover { gap: 11px; }
+  .mentor .note { margin-top: 18px; }
+
+  /* ---- tick lists ---- */
+  .ticks { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+  .ticks li {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 10px;
+    font-size: 15.5px;
+    line-height: 1.5;
+  }
+  .ticks :global(svg) { width: 16px; height: 16px; color: var(--blue); margin-top: 4px; }
+
+  /* ---- curriculum ---- */
+  .days {
+    margin-top: 36px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .day + .day { border-top: 1px solid var(--line); }
+
+  .day summary,
+  .faq summary {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px clamp(16px, 2.4vw, 26px);
+    cursor: pointer;
+    list-style: none;
+    font-weight: 600;
+    color: var(--ink);
+    transition: background-color .2s ease;
+  }
+  .day summary::-webkit-details-marker,
+  .faq summary::-webkit-details-marker { display: none; }
+  .day summary:hover, .faq summary:hover { background: var(--bg-soft); }
+
+  .day__n {
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--blue-deep);
+    flex: none;
+    min-width: 58px;
+  }
+  .day__t { font-size: 16.5px; letter-spacing: -0.02em; }
+
+  .day__i {
+    margin-left: auto;
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    color: var(--body);
+    transition: transform .2s ease, border-color .2s ease, color .2s ease;
+  }
+  .day__i :global(svg) { width: 13px; height: 13px; }
+  details[open] .day__i { transform: rotate(45deg); border-color: var(--blue); color: var(--blue); }
+
+  .day__body { padding: 0 clamp(16px, 2.4vw, 26px) 24px; }
+  .day__body .ticks { margin-left: 72px; }
+  @media (max-width: 620px) { .day__body .ticks { margin-left: 0; } }
+
+  .assign {
+    margin-top: 16px;
+    margin-left: 72px;
+    font-size: 14.5px;
+    color: var(--body);
+    border-left: 2px solid var(--blue);
+    padding-left: 14px;
+  }
+  .assign b { color: var(--ink); display: block; font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 3px; }
+  @media (max-width: 620px) { .assign { margin-left: 0; } }
+
+  /* ---- stages ---- */
+  .stages { margin-top: 36px; counter-reset: stage; }
+  .stages__d {
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--blue-deep);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .stages h3 { font-size: 19px; }
+
+  /* ---- faq ---- */
+  .faq { margin-top: 32px; border-top: 1px solid var(--line); }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary { padding-inline: 2px; font-size: 16.5px; letter-spacing: -0.015em; }
+  .faq p { padding: 0 2px 22px; max-width: 70ch; font-size: 15.5px; }
+
+  /* ---- cta ---- */
+  .cta {
+    background: var(--blue);
+    border-radius: 20px;
+    padding: clamp(32px, 5vw, 56px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .cta h2 { color: #fff; }
+  .cta__p { color: #dbe2ff; margin-top: 10px; max-width: 46ch; }
+  .cta__btn { background: #fff; color: var(--blue-deep); white-space: nowrap; }
+  .cta__btn:hover { background: #eef1ff; }
+
+  /* ---- footer ---- */
+  .foot { border-top: 1px solid var(--line); padding-block: 40px; }
+  .foot__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 40px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .foot__inner b { color: var(--ink); display: block; }
+  .foot__links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .foot__links a { color: var(--body); transition: color .2s ease; }
+  .foot__links a:hover { color: var(--blue-deep); }
+</style>

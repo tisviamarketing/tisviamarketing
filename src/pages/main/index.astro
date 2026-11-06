@@ -1,0 +1,221 @@
+---
+import Layout from '../../components/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import { CONTACT, SITES, wa } from '../../data/site';
+
+const title = 'Tisvia Marketing — Performance Marketing Agency in Kerala';
+const description =
+  'Tisvia Marketing is a data-driven performance marketing agency. Meta and Google Ads, lead generation and creative built around measurable business growth.';
+
+const enquiry = wa("Hi Tisvia, I'd like to talk about marketing for my business.");
+
+const socials = [
+  { name: 'instagram' as const, label: 'Instagram', href: CONTACT.instagram },
+  { name: 'linkedin' as const, label: 'LinkedIn', href: CONTACT.linkedin },
+  { name: 'whatsapp' as const, label: 'WhatsApp', href: enquiry },
+  { name: 'mail' as const, label: 'Email', href: `mailto:${CONTACT.email}` },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': `${SITES.agency}/#organization`,
+    name: 'Tisvia Marketing',
+    url: SITES.agency,
+    logo: `${SITES.agency}/logo-marketing.png`,
+    image: `${SITES.agency}/logo-marketing.png`,
+    description,
+    slogan: 'Turning marketing into leads and sales.',
+    email: CONTACT.email,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Thrissur',
+      addressRegion: 'Kerala',
+      addressCountry: 'IN',
+    },
+    areaServed: 'Worldwide',
+    founder: { '@type': 'Person', name: 'Tismin Manoj', sameAs: CONTACT.linkedin },
+    sameAs: [CONTACT.instagram, CONTACT.linkedin],
+    knowsAbout: [
+      'Meta Ads',
+      'Google Ads',
+      'Performance marketing',
+      'Lead generation',
+      'Social media management',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    url: SITES.agency,
+    name: 'Tisvia Marketing',
+    publisher: { '@id': `${SITES.agency}/#organization` },
+  },
+];
+---
+
+<Layout title={title} description={description} canonical={`${SITES.agency}/`} schema={schema}>
+  <main class="hero">
+    <div class="wrap hero__inner">
+      <header class="hero__top">
+        <img
+          src="/logo-marketing.png"
+          width="754"
+          height="406"
+          alt="Tisvia Marketing"
+          class="logo"
+          fetchpriority="high"
+        />
+        <a class="academy-link" href={SITES.academy}>
+          Tisvia Academy <Icon name="arrow" />
+        </a>
+      </header>
+
+      <div class="hero__body">
+        <p class="eyebrow">Performance marketing</p>
+
+        <h1>Turning marketing into <br /><em>leads and sales.</em></h1>
+
+        <p class="lede">
+          Tisvia Marketing is a data-driven digital marketing agency for businesses that want more
+          than just an online presence. We bring strategy, performance advertising, social media and
+          creative execution together to support measurable business growth.
+        </p>
+
+        <p class="sub">
+          Marketing designed around your business objectives, audience and customer journey.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn--solid" href={enquiry} target="_blank" rel="noopener">
+            <Icon name="whatsapp" /> Talk on WhatsApp
+          </a>
+          <a class="btn btn--line" href={`mailto:${CONTACT.email}`}>Email us</a>
+        </div>
+
+        <nav class="socials" aria-label="Tisvia Marketing on social media">
+          {socials.map((s) => (
+            <a
+              href={s.href}
+              aria-label={s.label}
+              title={s.label}
+              target={s.href.startsWith('mailto:') ? undefined : '_blank'}
+              rel={s.href.startsWith('mailto:') ? undefined : 'noopener'}
+            >
+              <Icon name={s.name} />
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      <footer class="hero__foot">
+        <span>Tisvia Marketing</span>
+        <span>{CONTACT.location}</span>
+        <span>&copy; {new Date().getFullYear()}</span>
+      </footer>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .hero {
+    background:
+      radial-gradient(60rem 40rem at 88% -12%, var(--blue-wash), transparent 68%),
+      var(--bg);
+  }
+
+  .hero__inner {
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: clamp(40px, 7vh, 72px);
+    padding-block: clamp(26px, 5vh, 44px);
+  }
+
+  .hero__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .logo { width: clamp(132px, 17vw, 168px); height: auto; }
+
+  .academy-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--blue-deep);
+    padding: 10px 2px;
+    transition: gap .2s ease;
+  }
+  .academy-link :global(svg) { width: 15px; height: 15px; }
+  .academy-link:hover { gap: 12px; }
+
+  .hero__body { align-self: center; }
+
+  h1 {
+    font-size: clamp(38px, 6.6vw, 78px);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    max-width: 15ch;
+  }
+  h1 em { font-style: normal; color: var(--blue); }
+
+  .lede { margin-top: clamp(22px, 3vh, 30px); max-width: 56ch; }
+
+  .sub {
+    margin-top: 14px;
+    max-width: 52ch;
+    font-size: 15.5px;
+    color: var(--muted);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: clamp(28px, 4vh, 38px);
+  }
+
+  .socials {
+    display: flex;
+    gap: 10px;
+    margin-top: clamp(28px, 4vh, 38px);
+  }
+
+  .socials a {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    color: var(--body);
+    transition: color .2s ease, border-color .2s ease, background-color .2s ease;
+  }
+  .socials a:hover {
+    color: #fff;
+    background: var(--blue);
+    border-color: var(--blue);
+  }
+  .socials :global(svg) { width: 18px; height: 18px; }
+
+  .hero__foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+
+  /* the headline measure only works once there is room for it */
+  @media (max-width: 720px) {
+    h1 br { display: none; }
+  }
+</style>

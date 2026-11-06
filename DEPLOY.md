@@ -1,44 +1,63 @@
 # Deploy notes
 
-**One** Vercel project serves both sites from the `main` branch of this repo.
+One Astro project. One Vercel project. Two domains, split by hostname.
 
-| URL                        | Serves       |
-|----------------------------|--------------|
-| tisviamarketing.in         | `main/`      |
-| academy.tisviamarketing.in | `academy/`   |
+| URL                        | Source                        |
+|----------------------------|-------------------------------|
+| tisviamarketing.in         | `src/pages/main/index.astro`  |
+| academy.tisviamarketing.in | `src/pages/academy/index.astro` |
 
-Plain HTML + CSS. No build step. No dependencies.
+## Vercel
+- **Root Directory: empty.** `vercel.json` sits at the repo root and sets
+  `buildCommand`, `outputDirectory` and `framework` itself, so the dashboard
+  settings do not need to be touched. Pointing Root Directory at a subfolder
+  breaks the build.
+- Deploys from `main`.
+- The repo is public. On the Hobby plan a private repo blocks any deployment
+  whose commit author is not the project owner.
 
-## Vercel project settings
-- Framework Preset: **Other**
-- Root Directory: **empty** (the repo root)
-- Build Command / Output Directory / Install Command: *(all empty)*
+## How the hostname split works
+Neither site is built to the output root, and that is deliberate: Vercel
+resolves real files **before** it applies rewrites, so an `index.html` at the
+root would be served for `/` on every hostname and the routing would never run.
 
-Leave **Root Directory empty**. `vercel.json` has to sit beside the folders
-it routes, at whatever Vercel treats as the project root. If that setting is
-ever pointed at a subfolder, everything has to move into it as well.
+With both sites in folders, `/` matches no file and `vercel.json` decides —
+`academy.tisviamarketing.in` is rewritten into `/academy/`, everything else
+into `/main/`.
 
-Both domains are attached to this same project under **Settings → Domains**.
+Files that *do* exist at the output root (`/_astro/*`, `/favicon.png`, the
+logos) are matched by the filesystem first and so are shared by both hostnames
+without any rewrite. Anything that must differ per hostname — `robots.txt`,
+`sitemap.xml`, `og.png` — therefore lives in `public/main/` and
+`public/academy/`, never at the root.
 
-## How the split works
-Neither site sits at the repo root, and that is deliberate. Vercel matches
-real files **before** it applies rewrites, so an `index.html` at the root
-would be served for `/` on every host and the routing below would never run.
+If the academy subdomain changes, update the `has.value` host in `vercel.json`;
+it is an exact string match.
 
-With both sites in folders, `/` matches nothing and `vercel.json` decides:
-a request whose **Host** is `academy.tisviamarketing.in` is rewritten into
-`academy/`, and everything else falls through to `main/`.
+## Content
+Copy comes from the client's content pack (agency hero + full academy page).
+Legal qualifiers in it are deliberate and must survive edits:
+- ₹50 Cr+ is *combined revenue of businesses worked with*, not Tisvia's own.
+- Ad spend is *"up to ₹10 crore managed"*.
+- The 30-day post-programme support is *proposed*, not promised.
+- The certificate is conditional on assignments and assessment.
 
-If the academy subdomain ever changes, update the `has.value` host in
-`vercel.json` — it is an exact string match.
+## Still needed before this is advertised
+- Real WhatsApp number and email in `src/data/site.ts` (currently placeholders).
+- Programme fee, next batch date and daily timing for the academy page.
 
 ## DNS (GoDaddy)
-Current live records:
+| Type  | Name      | Value                                 |
+|-------|-----------|---------------------------------------|
+| A     | `@`       | `216.198.79.1`                        |
+| CNAME | `academy` | `a28cf879de88f953.vercel-dns-017.com` |
 
-| Type  | Name      | Value                                   |
-|-------|-----------|-----------------------------------------|
-| A     | `@`       | `216.198.79.1`                          |
-| CNAME | `academy` | `a28cf879de88f953.vercel-dns-017.com`   |
-
-GoDaddy **Domain Forwarding** must stay off. While it is on it adds its own
+GoDaddy **Domain Forwarding** must stay off — while it is on it adds its own
 `A` records at `@` that fight Vercel's and cannot be deleted.
+
+## Local
+```
+npm install
+npm run dev      # http://localhost:4321/main/  and  /academy/
+npm run build
+```

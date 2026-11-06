@@ -226,16 +226,20 @@ const schema = [
 
   h1 {
     color: #fff;
-    font-size: clamp(38px, 6.6vw, 78px);
+    font-size: clamp(40px, 7vw, 82px);
     font-weight: 800;
-    letter-spacing: -0.045em;
-    max-width: 15ch;
+    letter-spacing: -0.055em;
+    line-height: 1;
+    max-width: 14ch;
   }
   h1 em { font-style: normal; color: #a9bcff; }
 
+  /* long prose, so it sits a step under the global deck size */
   .lede {
     margin-top: clamp(22px, 3vh, 30px);
-    max-width: 56ch;
+    max-width: 54ch;
+    font-size: clamp(16.5px, 1.9vw, 19px);
+    line-height: 1.55;
     color: rgba(255, 255, 255, .84);
   }
 

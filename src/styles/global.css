@@ -68,7 +68,7 @@ body {
   color: var(--body);
   font-family: var(--font);
   font-size: 17px;
-  line-height: 1.62;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'ss01';
@@ -78,14 +78,26 @@ body {
   body { font-size: 16px; }
 }
 
+/* Display type carries the page. It is deliberately a long way from body
+   size and weight — a flat 15–19px band with 700 headings reads like a
+   document, not a designed page. */
 h1, h2, h3, h4 {
   color: var(--ink);
-  font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
   margin: 0;
   text-wrap: balance;
 }
+
+h3, h4 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+/* figures line up in columns and read as data, not prose */
+b, strong { font-variant-numeric: tabular-nums; }
 
 p { margin: 0; text-wrap: pretty; }
 
@@ -124,9 +136,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* 01 · Label — numbered section markers */
 .eyebrow {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--blue-deep);
   margin: 0 0 16px;
@@ -142,15 +154,19 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   opacity: .5;
 }
 
+/* the deck under a heading: a clear step above body, a long way below display */
 .lede {
-  font-size: clamp(16.5px, 2vw, 19px);
+  font-size: clamp(18px, 2.3vw, 22px);
+  line-height: 1.45;
+  letter-spacing: -0.018em;
   color: var(--body);
-  max-width: 56ch;
+  max-width: 44ch;
 }
 
 .note {
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.6;
+  letter-spacing: 0;
   color: var(--muted);
 }
 
@@ -198,8 +214,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   background: var(--bg);
 }
 
-.card h3 { font-size: 18.5px; margin-bottom: 9px; letter-spacing: -0.02em; }
-.card p  { font-size: 15.5px; }
+.card h3 { font-size: 20px; margin-bottom: 10px; }
+.card p  { font-size: 15.5px; line-height: 1.58; }
 
 .grid { display: grid; gap: 14px; }
 .grid--2 { grid-template-columns: repeat(2, 1fr); }

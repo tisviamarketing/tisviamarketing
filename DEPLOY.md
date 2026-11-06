@@ -4,7 +4,7 @@
 
 | URL                        | Serves       |
 |----------------------------|--------------|
-| tisviamarketing.in         | `index.html` |
+| tisviamarketing.in         | `main/`      |
 | academy.tisviamarketing.in | `academy/`   |
 
 Plain HTML + CSS. No build step. No dependencies.
@@ -14,17 +14,20 @@ Plain HTML + CSS. No build step. No dependencies.
 - Root Directory: **empty** (the repo root)
 - Build Command / Output Directory / Install Command: *(all empty)*
 
-Leave **Root Directory empty**. Every file the site needs sits at the repo
-root — `index.html`, `academy/` and `vercel.json`. If that setting is ever
-pointed at a subfolder, the files have to move into it as well, `vercel.json`
-included, or every URL 404s.
+Leave **Root Directory empty**. `vercel.json` has to sit beside the folders
+it routes, at whatever Vercel treats as the project root. If that setting is
+ever pointed at a subfolder, everything has to move into it as well.
 
 Both domains are attached to this same project under **Settings → Domains**.
 
 ## How the split works
-`vercel.json` rewrites every request whose **Host** is
-`academy.tisviamarketing.in` into the `academy` folder. Every other host
-falls through to `index.html`, so the apex domain gets the landing page.
+Neither site sits at the repo root, and that is deliberate. Vercel matches
+real files **before** it applies rewrites, so an `index.html` at the root
+would be served for `/` on every host and the routing below would never run.
+
+With both sites in folders, `/` matches nothing and `vercel.json` decides:
+a request whose **Host** is `academy.tisviamarketing.in` is rewritten into
+`academy/`, and everything else falls through to `main/`.
 
 If the academy subdomain ever changes, update the `has.value` host in
 `vercel.json` — it is an exact string match.

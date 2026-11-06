@@ -9,6 +9,10 @@
         { "type": "host", "value": "academy.tisviamarketing.in" }
       ],
       "destination": "/academy/:path*"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/main/:path*"
     }
   ],
   "headers": [

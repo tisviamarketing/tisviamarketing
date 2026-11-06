@@ -35,16 +35,37 @@ If the academy subdomain changes, update the `has.value` host in `vercel.json`;
 it is an exact string match.
 
 ## Content
-Copy comes from the client's content pack (agency hero + full academy page).
-Legal qualifiers in it are deliberate and must survive edits:
-- ₹50 Cr+ is *combined revenue of businesses worked with*, not Tisvia's own.
+All academy copy lives in `src/data/academy.ts`; contact details in
+`src/data/site.ts`. The academy page is deliberately short — about 700 words
+across seven numbered blocks. Keep it that way: long copy is a regression here.
+
+Legal qualifiers are deliberate and must survive edits:
 - Ad spend is *"up to ₹10 crore managed"*.
-- The 30-day post-programme support is *proposed*, not promised.
+- Live advertising spend is **separate from the programme fee**.
 - The certificate is conditional on assignments and assessment.
+- Post-programme support is *proposed*, not promised.
+- No campaign result, income or client is guaranteed.
+
+The message screenshots in `public/t/` are cropped and redacted: a student's
+phone number is blurred in `t2`. Do not re-crop from the originals on the
+client's machine without redacting again.
 
 ## Still needed before this is advertised
-- Real WhatsApp number and email in `src/data/site.ts` (currently placeholders).
-- Programme fee, next batch date and daily timing for the academy page.
+- Batch start date and daily session times (the page sends people to WhatsApp
+  for both). Morning and evening batches exist but are not published yet.
+
+## Performance rules
+These are the things that made the page lag, and they stay fixed:
+- **No `filter: blur()` on the hero.** The moving gradient is three
+  `radial-gradient` circles moved by `transform`. A blurred box re-renders an
+  offscreen buffer every frame and is what killed it on a phone.
+- **Manrope is self-hosted** in `public/f/` — one variable woff2 per subset,
+  preloaded. No connection to a font CDN, nothing third-party blocking render.
+- **No `content-visibility` on sections.** It skips layout, so a jump to
+  `#faq` lands in the wrong place. Sections use `contain: layout` instead.
+- `backdrop-filter` on the sticky bar is **off below 880px**.
+- Every image below the fold is `loading="lazy"` with a WebP `<picture>`
+  source and explicit `width`/`height`.
 
 ## DNS (GoDaddy)
 | Type  | Name      | Value                                 |

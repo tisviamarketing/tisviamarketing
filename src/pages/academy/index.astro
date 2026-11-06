@@ -2,92 +2,23 @@
 import Layout from '../../components/Layout.astro';
 import Icon from '../../components/Icon.astro';
 import { CONTACT, SITES, wa } from '../../data/site';
-import { CURRICULUM, ENROLMENT, FAQS, STAGES, STYLE, TESTIMONIALS } from '../../data/academy';
+import {
+  DAYS,
+  ENROLMENT,
+  FAQS,
+  INCLUDED,
+  MENTOR_STATS,
+  PHASES,
+  PROBLEM,
+  SAMPLE_DAY,
+  TESTIMONIALS,
+} from '../../data/academy';
 
 const title = 'Tisvia Marketing Academy — 10-Day Live Meta Ads Mentorship';
 const description =
-  'A 10-day live Meta Ads mentorship in Malayalam and English. Build, launch and optimise real campaigns with Ads Manager demonstrations, assignments and feedback.';
+  'Ten live Meta Ads sessions in Malayalam and English. Build, launch and optimise real campaigns in Ads Manager, with assignments and individual feedback. ₹9,999.';
 
 const enquiry = wa("Hi, I'm interested in the 10-Day Meta Ads Mentorship Programme.");
-
-const quickStats = [
-  { n: '10 days', s: 'Programme duration' },
-  { n: '2 hours', s: 'Live session each day' },
-  { n: '20 hours', s: 'Total live training' },
-  { n: '10 tasks', s: 'Practical assignments' },
-];
-
-const mentorStats = [
-  { n: '4+', s: 'Years of experience' },
-  { n: '100+', s: 'Clients worked with globally' },
-  { n: '₹10 Cr', s: 'Advertising spend managed, up to' },
-  { n: '100+', s: 'Students trained' },
-];
-
-const programme = [
-  {
-    h: 'Who is it for?',
-    items: [
-      'Beginners entering digital marketing',
-      'Freelancers building a service skill',
-      'Business owners managing their ads',
-      'Marketers looking to upskill',
-    ],
-  },
-  {
-    h: 'What will you learn?',
-    items: [
-      'Plan and structure campaigns',
-      'Set up tracking and audiences',
-      'Create and launch ads',
-      'Analyse and optimise performance',
-    ],
-  },
-  {
-    h: 'How is it delivered?',
-    items: [
-      'Live interactive online sessions',
-      'Malayalam + English instruction',
-      'Ads Manager demonstrations',
-      'Assignments and feedback',
-    ],
-  },
-];
-
-const inclusions = [
-  {
-    h: 'Live learning',
-    items: ['10 live interactive sessions', '20 hours of training', 'Live Ads Manager demonstrations'],
-  },
-  {
-    h: 'Practice materials',
-    items: [
-      '10 practical assignments',
-      'Case studies and campaign examples',
-      'Reporting templates and checklists',
-      'Recordings of every session',
-    ],
-  },
-  {
-    h: 'Completion',
-    items: ['Campaign review and feedback', 'Final campaign project', 'Certificate of Completion*'],
-  },
-];
-
-const support = [
-  'WhatsApp learning community',
-  'Troubleshooting guidance for tracking issues, ad rejections and high CPL',
-  'Two weekly group doubt-clearing sessions during the first two weeks',
-  'One campaign setup or performance report review per student',
-  'Access to class recordings, checklists, assignments and reporting templates',
-  'Guidance on portfolio building, freelancing and client communication',
-];
-
-const project = [
-  { h: 'Campaign objective', p: 'Define the business goal and choose an appropriate campaign objective.' },
-  { h: 'Audience & creative', p: 'Present the audience approach, creative direction and ad messaging.' },
-  { h: 'Budget & optimisation', p: 'Outline the budget, performance measures and optimisation approach.' },
-];
 
 const schema = [
   {
@@ -118,7 +49,13 @@ const schema = [
       courseMode: 'online',
       courseWorkload: 'PT20H',
       inLanguage: ['ml', 'en'],
-      instructor: { '@type': 'Person', name: 'Tismin Manoj', sameAs: CONTACT.linkedin },
+      instructor: {
+        '@type': 'Person',
+        name: 'Tismin Manoj',
+        jobTitle: 'Performance marketer',
+        image: `${SITES.academy}/tismin.jpg`,
+        sameAs: CONTACT.linkedin,
+      },
     },
     offers: {
       '@type': 'Offer',
@@ -128,11 +65,10 @@ const schema = [
       availability: 'https://schema.org/InStock',
       url: `${SITES.academy}/#enrol`,
     },
-    syllabusSections: CURRICULUM.map((d, i) => ({
+    syllabusSections: DAYS.map((d, i) => ({
       '@type': 'Syllabus',
       position: i + 1,
-      name: `Day ${d.n} — ${d.title}`,
-      description: d.points.join('. ') + '.',
+      name: `Day ${d.n} — ${d.t}`,
     })),
   },
   {
@@ -152,322 +88,222 @@ const schema = [
   description={description}
   canonical={`${SITES.academy}/`}
   schema={schema}
-  ogImage={`${SITES.academy}/logo-academy.png`}
+  ogImage={`${SITES.academy}/og.png`}
 >
   <a class="skip" href="#main">Skip to content</a>
-
-  <span id="top-sentinel" aria-hidden="true"></span>
 
   <header class="bar bar--over">
     <div class="wrap bar__inner">
       <a href="#top" class="bar__brand" aria-label="Tisvia Marketing Academy — top of page">
-        <img src="/logo-academy.png" width="752" height="402" alt="Tisvia Marketing Academy" fetchpriority="high" />
+        <img src="/logo-academy.png" width="420" height="225" alt="Tisvia Marketing Academy" fetchpriority="high" />
       </a>
       <nav class="bar__nav" aria-label="Sections">
-        <a href="#about">About</a>
-        <a href="#programme">Programme</a>
-        <a href="#curriculum">Curriculum</a>
-        <a href="#faq">FAQs</a>
+        <a href="#plan">The ten days</a>
+        <a href="#mentor">Mentor</a>
+        <a href="#enrol">Fee</a>
+        <a href="#faq">Questions</a>
       </nav>
       <a class="btn btn--solid bar__cta" href={enquiry} target="_blank" rel="noopener">Enquire</a>
     </div>
   </header>
 
   <main id="main">
-    <!-- ───────────────── hero ───────────────── -->
+    <!-- ───────── hero ───────── -->
     <section class="hero" id="top">
       <div class="hero__bg" aria-hidden="true">
-        <span class="blob blob--1"></span>
-        <span class="blob blob--2"></span>
-        <span class="blob blob--3"></span>
+        <span class="glow glow--1"></span>
+        <span class="glow glow--2"></span>
+        <span class="glow glow--3"></span>
       </div>
 
       <div class="wrap hero__inner">
-        <h1>Learn Meta Ads. <em>Build real campaigns.</em></h1>
+        <h1>Learn Meta ads by running them.</h1>
       </div>
 
-      <a class="cue" href="#programme-intro" aria-label="Scroll to the programme">
-        <span class="cue__line" aria-hidden="true"><span></span></span>
+      <a class="cue" href="#problem" aria-label="Scroll to the programme">
         <span class="cue__txt">Scroll</span>
+        <span class="cue__line" aria-hidden="true"><span></span></span>
       </a>
     </section>
 
-    <!-- ───────────────── intro ───────────────── -->
-    <section class="section" id="programme-intro">
+    <!-- ───────── 01 problem ───────── -->
+    <section class="section" id="problem">
       <div class="wrap">
-        <p class="eyebrow reveal">Live mentorship · Malayalam + English · {ENROLMENT.fee}</p>
-        <h2 class="reveal">A 10-day live mentorship in Meta advertising.</h2>
-        <p class="lede reveal" style="margin-top:22px">
-          Built to help you understand Meta advertising, build campaigns, read performance data and
-          make informed optimisation decisions — not just click around Ads Manager.
-        </p>
-        <div class="actions reveal">
-          <a class="btn btn--solid" href={enquiry} target="_blank" rel="noopener">
-            <Icon name="whatsapp" /> Join the next batch
-          </a>
-          <a class="btn btn--line" href="#curriculum">See the curriculum</a>
-        </div>
-
-        <ul class="stats stats--hero reveal">
-          {quickStats.map((s) => (
-            <li><b>{s.n}</b><span>{s.s}</span></li>
-          ))}
-        </ul>
-      </div>
-    </section>
-
-    <!-- ───────────────── about ───────────────── -->
-    <section class="section" id="about">
-      <div class="wrap split">
-        <div>
-          <p class="eyebrow reveal">About the academy</p>
-          <h2 class="reveal">Learn by understanding the work behind the ads.</h2>
-          <p class="lede reveal" style="margin-top:22px">
-            Tisvia Marketing Academy focuses on practical digital marketing education. The programme
-            combines structured lessons with live demonstrations and assignments so students can
-            apply what they learn to real campaign scenarios.
-          </p>
-          <p style="margin-top:16px">
-            The goal is not just to explain the Ads Manager interface. It is to help you understand
-            campaign objectives, audiences, creatives, tracking, performance metrics and
-            optimisation decisions.
-          </p>
-        </div>
-
-        <aside class="card mentor reveal">
-          <p class="eyebrow" style="margin-bottom:10px">Your mentor</p>
-          <h3>Tismin Manoj</h3>
-          <p>
-            Founder and mentor at Tisvia Marketing Academy, with 4+ years of digital marketing
-            experience across multiple industries and campaign types.
-          </p>
-          <p>
-            Professional experience includes working with 100+ clients globally and managing up to
-            ₹10 crore in advertising spend.
-          </p>
-          <a class="inline-link" href={CONTACT.linkedin} target="_blank" rel="noopener">
-            View LinkedIn profile <Icon name="arrow" />
-          </a>
-          <p class="note">
-            The combined revenue figure associated with businesses the mentor has worked with is not
-            a claim of revenue generated solely by Tisvia or by advertising campaigns.
-          </p>
-        </aside>
-      </div>
-    </section>
-
-    <!-- ───────────────── experience ───────────────── -->
-    <section class="section">
-      <div class="wrap">
-        <p class="eyebrow reveal">Experience &amp; learning</p>
-        <h2 class="reveal">Built around practical experience.</h2>
+        <p class="eyebrow reveal">01 · The gap</p>
+        <h2 class="reveal">Courses teach theory. Clients pay for campaigns.</h2>
         <p class="lede reveal" style="margin-top:18px">
-          Learn from professional campaign experience and a mentorship format focused on
-          application, review and improvement.
+          Ten days, two hours a day, live. You are inside a real ad account from the first week.
         </p>
-        <ul class="stats stats--big reveal">
-          {mentorStats.map((s) => (
-            <li><b>{s.n}</b><span>{s.s}</span></li>
-          ))}
+
+        <ul class="pains reveal">
+          {PROBLEM.map((p) => <li>{p}</li>)}
         </ul>
-        <p class="note" style="margin-top:18px">
-          Client and campaign experience includes a mix of the mentor's professional work and Tisvia
-          Marketing projects.
+
+        <p class="close reveal">
+          What is missing is usually <b>practice on a live account</b> and <b>someone checking your
+          work</b>. Not another playlist.
         </p>
       </div>
     </section>
 
-    <!-- ───────────────── programme ───────────────── -->
-    <section class="section" id="programme">
+    <!-- ───────── 02 the ten days ───────── -->
+    <section class="section section--defer" id="plan">
       <div class="wrap">
-        <p class="eyebrow reveal">The flagship programme</p>
-        <h2 class="reveal">10-Day Meta Ads Mentorship Programme</h2>
+        <p class="eyebrow reveal">02 · The ten days</p>
+        <h2 class="reveal">One live session a day</h2>
         <p class="lede reveal" style="margin-top:18px">
-          A structured, live online programme for beginners, freelancers, business owners and
-          working digital marketers who want to develop practical Meta Ads skills.
+          Two hours, live on Zoom, Ads Manager on screen. Every session is recorded.
         </p>
-        <div class="grid grid--3 reveal" style="margin-top:36px">
-          {programme.map((c) => (
+
+        <div class="phases reveal">
+          {PHASES.map((p) => (
             <article class="card">
-              <h3>{c.h}</h3>
-              <ul class="ticks">
-                {c.items.map((i) => (
-                  <li><Icon name="check" />{i}</li>
-                ))}
-              </ul>
+              <span class="phase__d">{p.days}</span>
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
             </article>
           ))}
         </div>
-      </div>
-    </section>
 
-    <!-- ───────────────── curriculum ───────────────── -->
-    <section class="section" id="curriculum">
-      <div class="wrap">
-        <p class="eyebrow reveal">Day-by-day curriculum</p>
-        <h2 class="reveal">What you will cover in 10 days.</h2>
-        <p class="lede reveal" style="margin-top:18px">
-          Each day combines concepts, live practical demonstrations, student practice and Q&amp;A.
-        </p>
-
-        <div class="days reveal">
-          {CURRICULUM.map((d, i) => (
-            <details class="day" open={i === 0}>
-              <summary>
-                <span class="day__n">Day {d.n}</span>
-                <span class="day__t">{d.title}</span>
-                <span class="day__p">{d.phase}</span>
-                <span class="day__i" aria-hidden="true"><Icon name="plus" /></span>
-              </summary>
-              <div class="day__body">
-                <ul class="ticks">
-                  {d.points.map((p) => (
-                    <li><Icon name="check" />{p}</li>
-                  ))}
-                </ul>
-                <p class="assign"><b>Assignment</b> {d.assignment}</p>
-              </div>
-            </details>
-          ))}
-        </div>
-
-        <p class="note" style="margin-top:22px">
-          Daily session format: 30 minutes of concepts and strategy, 45 minutes of live practical
-          demonstration, 30 minutes of student practice and assignment work, and 15 minutes of
-          Q&amp;A and feedback.
-        </p>
-      </div>
-    </section>
-
-    <!-- ───────────────── journey ───────────────── -->
-    <section class="section">
-      <div class="wrap">
-        <p class="eyebrow reveal">The learning journey</p>
-        <h2 class="reveal">Five phases, ten days.</h2>
-        <ol class="stages reveal">
-          {STAGES.map((s) => (
-            <li class="card">
-              <b class="stages__d">{s.days}</b>
-              <h3>{s.title}</h3>
-              <p>{s.body}</p>
-            </li>
+        <ol class="days reveal" aria-label="The ten days">
+          {DAYS.map((d) => (
+            <li><span>{d.n}</span>{d.t}</li>
           ))}
         </ol>
+
+        <p class="close reveal">
+          <b>Also inside:</b> ten assignments with individual feedback, real client case studies,
+          reporting templates and checklists, and recordings of every session.
+        </p>
       </div>
     </section>
 
-    <!-- ───────────────── how you will learn ───────────────── -->
-    <section class="section">
+    <!-- ───────── 03 a sample day ───────── -->
+    <section class="section section--defer" id="sample">
       <div class="wrap">
-        <p class="eyebrow reveal">Mentorship style</p>
-        <h2 class="reveal">How you will learn.</h2>
-        <div class="grid grid--2 reveal" style="margin-top:36px">
-          {STYLE.map((c) => (
-            <article class="card"><h3>{c.h}</h3><p>{c.p}</p></article>
-          ))}
+        <p class="eyebrow reveal">03 · A sample day</p>
+        <h2 class="reveal">{SAMPLE_DAY.label}: {SAMPLE_DAY.title}</h2>
+        <p class="lede reveal" style="margin-top:18px">{SAMPLE_DAY.intro}</p>
+
+        <ol class="steps reveal">
+          {SAMPLE_DAY.steps.map((s) => <li>{s}</li>)}
+        </ol>
+
+        <p class="close reveal">{SAMPLE_DAY.close}</p>
+        <p class="note reveal" style="margin-top:10px">{SAMPLE_DAY.note}</p>
+      </div>
+    </section>
+
+    <!-- ───────── 04 mentor ───────── -->
+    <section class="section section--defer" id="mentor">
+      <div class="wrap">
+        <p class="eyebrow reveal">04 · Your mentor</p>
+
+        <div class="mentor reveal">
+          <picture>
+            <source
+              srcset="/tismin-sm.webp 560w, /tismin.webp 900w"
+              sizes="min(100vw - 36px, 360px)"
+              type="image/webp"
+            />
+            <img
+              src="/tismin.jpg"
+              srcset="/tismin-sm.jpg 560w, /tismin.jpg 900w"
+              sizes="min(100vw - 36px, 360px)"
+              width="900"
+              height="1125"
+              alt="Tismin Manoj, performance marketer and mentor at Tisvia Marketing Academy"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+
+          <div class="mentor__text">
+            <h2>Tismin Manoj</h2>
+            <p class="lede" style="margin-top:16px">
+              Performance marketer. Four years spending other people's money on Meta, from Thrissur
+              to clients abroad — and now teaching the same account work he does every day.
+            </p>
+
+            <ul class="stats">
+              {MENTOR_STATS.map((s) => (
+                <li><b>{s.n}</b><span>{s.s}</span></li>
+              ))}
+            </ul>
+
+            <a class="inline-link" href={CONTACT.linkedin} target="_blank" rel="noopener">
+              LinkedIn <Icon name="arrow" />
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ───────────────── testimonials ───────────────── -->
-    <section class="section" id="words">
+    <!-- ───────── 05 proof ───────── -->
+    <section class="section section--defer" id="proof">
       <div class="wrap">
-        <p class="eyebrow reveal">In their own words</p>
-        <h2 class="reveal">Messages from students and clients.</h2>
-        <p class="lede reveal" style="margin-top:18px">
-          Unedited screenshots from students and clients. Personal phone numbers have been removed.
-        </p>
+        <p class="eyebrow reveal">05 · Proof</p>
+        <h2 class="reveal">What they sent afterwards</h2>
+
         <div class="shots reveal">
           {TESTIMONIALS.map((t) => (
             <figure>
-              <img src={t.src} width={t.w} height={t.h} alt={t.alt} loading="lazy" decoding="async" />
+              <picture>
+                <source srcset={`${t.src}.webp`} type="image/webp" />
+                <img src={`${t.src}.jpg`} width={t.w} height={t.h} alt={t.alt} loading="lazy" decoding="async" />
+              </picture>
               <figcaption>{t.cap}</figcaption>
             </figure>
           ))}
         </div>
-      </div>
-    </section>
 
-    <!-- ───────────────── inclusions ───────────────── -->
-    <section class="section">
-      <div class="wrap">
-        <p class="eyebrow reveal">Included in the programme</p>
-        <h2 class="reveal">Resources and support to reinforce your learning.</h2>
-        <div class="grid grid--3 reveal" style="margin-top:36px">
-          {inclusions.map((c) => (
-            <article class="card">
-              <h3>{c.h}</h3>
-              <ul class="ticks">
-                {c.items.map((i) => (
-                  <li><Icon name="check" />{i}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-        <p class="note" style="margin-top:20px">
-          *Certificate of Completion is awarded to students who complete the required assignments
-          and assessment. Session recordings are provided for every live class, so you can revisit
-          lessons and revise concepts afterwards.
+        <p class="note reveal" style="margin-top:24px">
+          Unedited screenshots from students and clients. Personal phone numbers have been removed.
+          These are their results, not a promise of yours.
         </p>
       </div>
     </section>
 
-    <!-- ───────────────── support ───────────────── -->
-    <section class="section">
-      <div class="wrap split">
-        <div>
-          <p class="eyebrow reveal">After the live programme</p>
-          <h2 class="reveal">Continue learning with post-programme support.</h2>
-          <p class="lede reveal" style="margin-top:22px">
-            The programme brochure outlines a proposed 30-day support period to help students work
-            through questions as they apply what they have learned.
-          </p>
-        </div>
-        <article class="card">
-          <h3>Proposed 30-day support includes</h3>
+    <!-- ───────── 06 fee ───────── -->
+    <section class="section section--defer" id="enrol">
+      <div class="wrap">
+        <p class="eyebrow reveal">06 · The programme</p>
+
+        <div class="price reveal">
+          <div class="price__head">
+            <b>{ENROLMENT.fee}</b>
+            <span>{ENROLMENT.feeUnit}</span>
+          </div>
+
           <ul class="ticks">
-            {support.map((s) => (
-              <li><Icon name="check" />{s}</li>
+            {INCLUDED.map((i) => (
+              <li><Icon name="check" />{i}</li>
             ))}
           </ul>
-          <p class="note">
-            Support replies are expected within 24–48 working hours. Reviews are educational and do
-            not include done-for-you campaign management or guaranteed results.
-          </p>
-        </article>
-      </div>
-    </section>
 
-    <!-- ───────────────── final project ───────────────── -->
-    <section class="section">
-      <div class="wrap">
-        <p class="eyebrow reveal">Final campaign project</p>
-        <h2 class="reveal">Bring the learning together.</h2>
-        <p class="lede reveal" style="margin-top:18px">
-          As part of the programme, students work towards presenting a campaign strategy that
-          demonstrates their understanding of the key stages of Meta advertising.
-        </p>
-        <div class="grid grid--3 reveal" style="margin-top:36px">
-          {project.map((c) => (
-            <article class="card"><h3>{c.h}</h3><p>{c.p}</p></article>
-          ))}
+          <a class="btn btn--solid price__btn" href={enquiry} target="_blank" rel="noopener">
+            <Icon name="whatsapp" /> Enquire on WhatsApp
+          </a>
+
+          <p class="note">
+            Any live advertising spend during the practical sessions is separate from the fee. The
+            Certificate of Completion needs the assignments and the final assessment. A WhatsApp
+            group and doubt-clearing sessions are proposed for the weeks after the programme.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- ───────────────── faq ───────────────── -->
-    <section class="section" id="faq">
+    <!-- ───────── 07 questions ───────── -->
+    <section class="section section--defer" id="faq">
       <div class="wrap">
-        <p class="eyebrow reveal">Frequently asked questions</p>
-        <h2 class="reveal">Before you enrol.</h2>
+        <p class="eyebrow reveal">07 · Questions</p>
+        <h2 class="reveal">Before you message</h2>
+
         <div class="faq reveal">
           {FAQS.map((f) => (
             <details>
-              <summary>
-                {f.q}
-                <span class="day__i" aria-hidden="true"><Icon name="plus" /></span>
-              </summary>
+              <summary>{f.q}<span class="faq__i" aria-hidden="true"><Icon name="plus" /></span></summary>
               <p>{f.a}</p>
             </details>
           ))}
@@ -475,23 +311,13 @@ const schema = [
       </div>
     </section>
 
-    <!-- ───────────────── cta ───────────────── -->
-    <section class="section" id="enrol">
+    <!-- ───────── close ───────── -->
+    <section class="section section--defer">
       <div class="wrap">
-        <p class="eyebrow reveal">Fee</p>
-        <h2 class="reveal">{ENROLMENT.fee} {ENROLMENT.feeUnit}.</h2>
-        <p class="lede reveal" style="margin-top:18px">
-          Ten days, two hours a day, twenty live hours in all. Message us on WhatsApp for the next
-          start date and the session times.
-        </p>
-        <p class="note" style="margin:18px 0 44px">
-          Any live advertising spend during the practical sessions is separate from the programme fee.
-        </p>
         <div class="cta reveal">
           <div>
-            <p class="eyebrow" style="color:#c9d4ff">Tisvia Marketing Academy</p>
-            <h2 class="reveal">Build your Meta Ads skillset.</h2>
-            <p class="cta__p">Message us and we'll send the next start date and joining details.</p>
+            <h2>Ten days. One campaign running.</h2>
+            <p class="cta__p">Message Tismin for the next start date and the session times.</p>
           </div>
           <a class="btn cta__btn" href={enquiry} target="_blank" rel="noopener">
             <Icon name="whatsapp" /> Enquire on WhatsApp
@@ -503,60 +329,70 @@ const schema = [
 
   <footer class="foot">
     <div class="wrap foot__inner">
-      <div>
-        <b>Tisvia Marketing Academy</b>
-        <span>Learn it. Build it. Grow it.</span>
-      </div>
-      <nav class="foot__links" aria-label="Elsewhere">
-        <a href={SITES.agency}>Tisvia Marketing</a>
+      <p><b>Tisvia Marketing Academy</b>{CONTACT.location}</p>
+      <nav class="foot__links" aria-label="Contact">
+        <a href={enquiry} target="_blank" rel="noopener">WhatsApp</a>
+        <a href={`mailto:${CONTACT.email}`}>Email</a>
         <a href={CONTACT.instagram} target="_blank" rel="noopener">Instagram</a>
-        <a href={CONTACT.linkedin} target="_blank" rel="noopener">Mentor LinkedIn</a>
+        <a href={CONTACT.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        <a href={SITES.agency}>Tisvia Marketing</a>
       </nav>
-      <small>&copy; {new Date().getFullYear()} Tisvia Marketing Academy. All rights reserved.</small>
     </div>
   </footer>
-<script is:inline>
-  (() => {
-    const root = document.documentElement;
-    const calm = matchMedia('(prefers-reduced-motion: reduce)');
 
-    // Only hide things if we can be sure we can show them again.
-    if (!calm.matches && 'IntersectionObserver' in window) {
-      root.classList.add('js-reveal');
+  <!-- phone-only: the price and the button never leave the screen -->
+  <a class="dock" href={enquiry} target="_blank" rel="noopener">
+    <span class="dock__p">{ENROLMENT.fee}<i>{ENROLMENT.feeUnit}</i></span>
+    <span class="dock__b"><Icon name="whatsapp" /> Enquire</span>
+  </a>
 
-      const seen = new IntersectionObserver(
-        (entries) => {
-          for (const e of entries) {
-            if (!e.isIntersecting) continue;
-            e.target.classList.add('is-in');
-            seen.unobserve(e.target);
-          }
-        },
-        { rootMargin: '0px 0px -12% 0px', threshold: 0.08 }
-      );
+  <script is:inline>
+    (function () {
+      var root = document.documentElement;
+      var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-      const items = document.querySelectorAll('.reveal');
-      for (const el of items) seen.observe(el);
+      if (!calm.matches && 'IntersectionObserver' in window) {
+        root.classList.add('js-reveal');
+        var seen = new IntersectionObserver(
+          function (entries) {
+            for (var i = 0; i < entries.length; i++) {
+              if (entries[i].isIntersecting) {
+                entries[i].target.classList.add('is-in');
+                seen.unobserve(entries[i].target);
+              }
+            }
+          },
+          { rootMargin: '0px 0px -10% 0px', threshold: 0.06 }
+        );
+        var items = document.querySelectorAll('.reveal');
+        for (var j = 0; j < items.length; j++) seen.observe(items[j]);
 
-      // Safety net: if the observer never reports anything, show everything
-      // rather than leave the page blank.
-      setTimeout(() => {
-        if (!document.querySelector('.reveal.is-in')) root.classList.remove('js-reveal');
-      }, 2500);
-    }
+        // safety net: if nothing has fired, never leave content invisible
+        setTimeout(function () {
+          if (!document.querySelector('.reveal.is-in')) root.classList.remove('js-reveal');
+        }, 2500);
+      }
 
-    // The bar is transparent over the hero, solid once you leave it.
-    const sentinel = document.getElementById('top-sentinel');
-    const bar = document.querySelector('.bar');
-    if (sentinel && bar && 'IntersectionObserver' in window) {
-      new IntersectionObserver(
-        ([e]) => bar.classList.toggle('bar--over', e.isIntersecting),
-        { rootMargin: '-62px 0px 0px 0px' }
-      ).observe(document.querySelector('.hero'));
-    }
-  })();
-</script>
+      // the bar sits on the gradient over the hero, and on white after it
+      var bar = document.querySelector('.bar');
+      var hero = document.querySelector('.hero');
+      if (bar && hero && 'IntersectionObserver' in window) {
+        new IntersectionObserver(
+          function (e) { bar.classList.toggle('bar--over', e[0].isIntersecting); },
+          { rootMargin: '-62px 0px 0px 0px' }
+        ).observe(hero);
+      }
 
+      // the dock only shows once the hero is behind you
+      var dock = document.querySelector('.dock');
+      if (dock && hero && 'IntersectionObserver' in window) {
+        new IntersectionObserver(
+          function (e) { dock.classList.toggle('dock--on', !e[0].isIntersecting); },
+          { rootMargin: '0px' }
+        ).observe(hero);
+      }
+    })();
+  </script>
 </Layout>
 
 <style>
@@ -581,7 +417,7 @@ const schema = [
     position: sticky;
     top: 0;
     z-index: 10;
-    background: rgba(255, 255, 255, .88);
+    background: rgba(255, 255, 255, .9);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
     transition: background-color .3s ease, border-color .3s ease;
@@ -598,16 +434,17 @@ const schema = [
   .bar--over .bar__brand img { filter: brightness(0) invert(1); }
   .bar--over .bar__cta { background: #fff; color: var(--blue-deep); }
   .bar--over .bar__cta:hover { background: #e8ecff; }
+
   .bar__inner {
     display: flex;
     align-items: center;
-    gap: 24px;
-    min-height: 62px;
+    gap: 20px;
+    min-height: var(--bar-h);
   }
   .bar__brand img { width: 84px; height: auto; }
   .bar__nav {
     display: flex;
-    gap: 26px;
+    gap: 24px;
     margin-left: auto;
     font-size: 14.5px;
     font-weight: 500;
@@ -616,9 +453,17 @@ const schema = [
   .bar__nav a:hover { color: var(--ink); }
   .bar__cta { min-height: 42px; padding: 0 20px; font-size: 14.5px; }
 
-  @media (max-width: 860px) {
+  @media (max-width: 880px) {
     .bar__nav { display: none; }
     .bar__cta { margin-left: auto; }
+    /* backdrop-filter is the single most expensive thing a phone does while
+       scrolling, and the bar is pinned the whole way down. Solid instead. */
+    .bar { background: #fff; backdrop-filter: none; }
+    .bar--over { background: transparent; }
+  }
+  @media (max-width: 400px) {
+    .bar__brand img { width: 72px; }
+    .bar__cta { padding: 0 16px; }
   }
 
   /* ---- hero ---- */
@@ -634,73 +479,73 @@ const schema = [
     isolation: isolate;
   }
 
-  .hero__bg { position: absolute; inset: 0; z-index: -1; }
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    /* nothing inside can paint outside, so the browser never has to look */
+    contain: strict;
+  }
 
-  /* Three slow blobs. Only transform and opacity move, so this stays on the
-     compositor and does not repaint the page. */
-  .blob {
+  /* Soft light pooling across the hero.
+     These are radial gradients, NOT blurred boxes: a blur() filter re-renders
+     an offscreen buffer every frame and was what made this page crawl on a
+     phone. A gradient is painted once and then only moved by the compositor. */
+  .glow {
     position: absolute;
     border-radius: 50%;
-    filter: blur(90px);
     will-change: transform;
+    transform: translateZ(0);
   }
 
-  .blob--1 {
+  .glow--1 {
+    width: 95vmax; height: 95vmax;
+    top: -40vmax; left: -28vmax;
+    background: radial-gradient(closest-side, #3d5afe 0%, rgba(61, 90, 254, .55) 45%, rgba(61, 90, 254, 0) 100%);
+    animation: drift1 28s ease-in-out infinite alternate;
+  }
+  .glow--2 {
+    width: 82vmax; height: 82vmax;
+    bottom: -34vmax; right: -24vmax;
+    background: radial-gradient(closest-side, #6f8bff 0%, rgba(111, 139, 255, .45) 45%, rgba(111, 139, 255, 0) 100%);
+    animation: drift2 34s ease-in-out infinite alternate;
+  }
+  .glow--3 {
     width: 62vmax; height: 62vmax;
-    top: -22vmax; left: -14vmax;
-    background: #3d5afe;
-    opacity: .85;
-    animation: drift1 24s ease-in-out infinite alternate;
-  }
-  .blob--2 {
-    width: 54vmax; height: 54vmax;
-    bottom: -20vmax; right: -12vmax;
-    background: #6f8bff;
-    opacity: .7;
-    animation: drift2 30s ease-in-out infinite alternate;
-  }
-  .blob--3 {
-    width: 40vmax; height: 40vmax;
-    top: 26%; left: 42%;
-    background: #122ea8;
-    opacity: .85;
-    animation: drift3 26s ease-in-out infinite alternate;
+    top: 20%; left: 36%;
+    background: radial-gradient(closest-side, #1230b4 0%, rgba(18, 48, 180, .5) 50%, rgba(18, 48, 180, 0) 100%);
+    animation: drift3 30s ease-in-out infinite alternate;
   }
 
   @keyframes drift1 {
     from { transform: translate3d(0, 0, 0) scale(1); }
-    to   { transform: translate3d(12vmax, 8vmax, 0) scale(1.14); }
+    to   { transform: translate3d(10vmax, 7vmax, 0) scale(1.12); }
   }
   @keyframes drift2 {
-    from { transform: translate3d(0, 0, 0) scale(1.1); }
-    to   { transform: translate3d(-14vmax, -9vmax, 0) scale(1); }
+    from { transform: translate3d(0, 0, 0) scale(1.08); }
+    to   { transform: translate3d(-11vmax, -7vmax, 0) scale(1); }
   }
   @keyframes drift3 {
     from { transform: translate3d(0, 0, 0) scale(1); }
-    to   { transform: translate3d(-10vmax, 11vmax, 0) scale(1.2); }
+    to   { transform: translate3d(-8vmax, 9vmax, 0) scale(1.18); }
   }
 
   .hero__inner { text-align: center; }
 
   .hero h1 {
     color: #fff;
-    font-size: clamp(32px, 4.3vw, 56px);
+    font-size: clamp(31px, 5.4vw, 60px);
     font-weight: 800;
     letter-spacing: -0.045em;
-    line-height: 1.08;
+    line-height: 1.06;
+    max-width: 18ch;
     margin-inline: auto;
-    text-wrap: balance;
   }
-  /* below this the line cannot fit, so let it break cleanly in two */
-  @media (max-width: 880px) {
-    .hero h1 { max-width: 16ch; }
-  }
-  .hero h1 em { font-style: normal; color: #a9bcff; }
 
   /* ---- scroll cue ---- */
   .cue {
     position: absolute;
-    bottom: clamp(22px, 4vh, 40px);
+    bottom: max(20px, env(safe-area-inset-bottom));
     left: 50%;
     transform: translateX(-50%);
     display: grid;
@@ -738,28 +583,169 @@ const schema = [
     60%  { transform: translateY(200%); }
     100% { transform: translateY(200%); }
   }
+  @media (max-height: 620px) {
+    .cue__line { height: 30px; }
+  }
 
   /* ---- reveal on scroll ---- */
   :global(.js-reveal) .reveal {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(18px);
   }
   :global(.js-reveal) .reveal.is-in {
     opacity: 1;
     transform: none;
-    transition: opacity .7s cubic-bezier(.22, .61, .36, 1),
-                transform .7s cubic-bezier(.22, .61, .36, 1);
+    transition: opacity .6s cubic-bezier(.22, .61, .36, 1),
+                transform .6s cubic-bezier(.22, .61, .36, 1);
   }
 
-  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-
   /* ---- headings ---- */
-  h2 { font-size: clamp(27px, 3.6vw, 42px); }
+  h2 { font-size: clamp(26px, 4.2vw, 40px); }
+
+  .close {
+    margin-top: clamp(26px, 4vw, 38px);
+    font-size: clamp(16.5px, 2vw, 18.5px);
+    max-width: 58ch;
+  }
+  .close b { color: var(--ink); font-weight: 700; }
+
+  /* ---- 01 pains ---- */
+  .pains {
+    margin-top: clamp(30px, 4vw, 44px);
+    display: grid;
+    gap: 1px;
+    background: var(--line);
+    border-block: 1px solid var(--line);
+  }
+  .pains li {
+    background: var(--bg);
+    padding: 16px 0 16px 26px;
+    position: relative;
+    font-size: clamp(15.5px, 1.8vw, 17px);
+    color: var(--ink);
+  }
+  .pains li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 1.05em;
+    width: 10px;
+    height: 1px;
+    background: var(--blue);
+  }
+
+  /* ---- 02 phases + days ---- */
+  .phases {
+    margin-top: clamp(30px, 4vw, 44px);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 860px) { .phases { grid-template-columns: 1fr; } }
+
+  .phase__d {
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--blue-deep);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .phases h3 { font-size: 19px; }
+
+  .days {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 clamp(20px, 4vw, 48px);
+  }
+  @media (max-width: 680px) { .days { grid-template-columns: 1fr; } }
+
+  .days li {
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    padding: 13px 0;
+    border-top: 1px solid var(--line);
+    font-size: 15.5px;
+    color: var(--ink);
+  }
+  .days li span {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    color: var(--muted);
+    flex: none;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---- 03 steps ---- */
+  .steps {
+    margin-top: clamp(26px, 3.5vw, 36px);
+    counter-reset: s;
+    display: grid;
+    gap: 2px;
+    max-width: 62ch;
+  }
+  .steps li {
+    counter-increment: s;
+    position: relative;
+    padding: 13px 0 13px 44px;
+    border-top: 1px solid var(--line);
+    font-size: clamp(15.5px, 1.8vw, 17px);
+    color: var(--ink);
+  }
+  .steps li:last-child { border-bottom: 1px solid var(--line); }
+  .steps li::before {
+    content: counter(s, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 15px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    color: var(--blue-deep);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---- 04 mentor ---- */
+  .mentor {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: clamp(28px, 5vw, 60px);
+    align-items: start;
+  }
+  .mentor img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    background: var(--bg-soft);
+  }
+  @media (max-width: 860px) {
+    .mentor { grid-template-columns: 1fr; gap: 28px; }
+    .mentor picture { display: block; max-width: 360px; }
+  }
+
+  .inline-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 26px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--blue-deep);
+    transition: gap .2s ease;
+  }
+  .inline-link :global(svg) { width: 15px; height: 15px; }
+  .inline-link:hover { gap: 11px; }
 
   /* ---- stats ---- */
   .stats {
+    margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1px;
     background: var(--line);
     border: 1px solid var(--line);
@@ -768,107 +754,87 @@ const schema = [
   }
   .stats li {
     background: var(--bg);
-    padding: 22px clamp(16px, 2vw, 24px);
+    padding: 18px clamp(14px, 2vw, 22px);
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
   }
-  .stats b { font-size: clamp(21px, 2.6vw, 28px); color: var(--ink); letter-spacing: -0.035em; }
-  .stats span { font-size: 13.5px; color: var(--muted); line-height: 1.45; }
-  .stats--hero { margin-top: clamp(44px, 6vw, 64px); }
-  .stats--big { margin-top: 34px; }
-  .stats--big b { color: var(--blue); }
+  .stats b { font-size: clamp(20px, 2.6vw, 27px); color: var(--blue); letter-spacing: -0.035em; }
+  .stats span { font-size: 13px; color: var(--muted); line-height: 1.45; }
 
-  @media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); } }
-
-  /* ---- split ---- */
-  .split {
+  /* ---- 05 shots ---- */
+  .shots {
+    margin-top: clamp(30px, 4vw, 44px);
     display: grid;
-    grid-template-columns: 1.05fr .95fr;
-    gap: clamp(26px, 4vw, 56px);
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(14px, 2.5vw, 26px);
     align-items: start;
   }
-  @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+  @media (max-width: 820px) { .shots { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .shots { grid-template-columns: 1fr; max-width: 400px; } }
 
-  .mentor h3 { font-size: 22px; margin-bottom: 12px; }
-  .mentor p { font-size: 15.5px; margin-bottom: 12px; }
-
-  .inline-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--blue-deep);
-    transition: gap .2s ease;
+  .shots figure { margin: 0; }
+  .shots img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--bg-soft);
   }
-  .inline-link :global(svg) { width: 15px; height: 15px; }
-  .inline-link:hover { gap: 11px; }
-  .mentor .note { margin-top: 18px; }
+  .shots figcaption { margin-top: 11px; font-size: 13.5px; color: var(--muted); }
 
-  /* ---- tick lists ---- */
-  .ticks { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+  /* ---- 06 price ---- */
+  .price {
+    margin-top: 6px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: clamp(26px, 4vw, 44px);
+    max-width: 580px;
+  }
+  .price__head { display: flex; align-items: baseline; gap: 10px; }
+  .price__head b {
+    font-size: clamp(40px, 7vw, 60px);
+    color: var(--ink);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+  .price__head span { font-size: 15px; color: var(--muted); }
+
+  .ticks { display: flex; flex-direction: column; gap: 11px; margin-top: 26px; }
   .ticks li {
     display: grid;
     grid-template-columns: 18px 1fr;
-    gap: 10px;
+    gap: 11px;
     font-size: 15.5px;
     line-height: 1.5;
+    color: var(--ink);
   }
   .ticks :global(svg) { width: 16px; height: 16px; color: var(--blue); margin-top: 4px; }
 
-  /* ---- curriculum ---- */
-  .days {
-    margin-top: 36px;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    overflow: hidden;
-  }
-  .day + .day { border-top: 1px solid var(--line); }
+  .price__btn { margin-top: 28px; width: 100%; }
+  .price .note { margin-top: 18px; }
 
-  .day summary,
+  /* ---- 07 faq ---- */
+  .faq { margin-top: clamp(26px, 3.5vw, 36px); border-top: 1px solid var(--line); }
+  .faq details { border-bottom: 1px solid var(--line); }
   .faq summary {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 20px clamp(16px, 2.4vw, 26px);
+    padding: 19px 2px;
     cursor: pointer;
     list-style: none;
     font-weight: 600;
+    font-size: clamp(16px, 2vw, 17.5px);
+    letter-spacing: -0.015em;
     color: var(--ink);
-    transition: background-color .2s ease;
   }
-  .day summary::-webkit-details-marker,
   .faq summary::-webkit-details-marker { display: none; }
-  .day summary:hover, .faq summary:hover { background: var(--bg-soft); }
+  .faq p { padding: 0 2px 22px; max-width: 66ch; font-size: 15.5px; }
 
-  .day__n {
-    font-size: 12.5px;
-    font-weight: 700;
-    letter-spacing: .09em;
-    text-transform: uppercase;
-    color: var(--blue-deep);
-    flex: none;
-    min-width: 58px;
-  }
-  .day__t { font-size: 16.5px; letter-spacing: -0.02em; }
-
-  .day__p {
+  .faq__i {
     margin-left: auto;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .05em;
-    text-transform: uppercase;
-    color: var(--muted);
-    white-space: nowrap;
-  }
-  @media (max-width: 820px) {
-    .day__p { display: none; }
-    .day__i { margin-left: auto; }
-  }
-
-  .day__i {
-    margin-left: 14px;
     flex: none;
     display: grid;
     place-items: center;
@@ -879,106 +845,95 @@ const schema = [
     color: var(--body);
     transition: transform .2s ease, border-color .2s ease, color .2s ease;
   }
-  .day__i :global(svg) { width: 13px; height: 13px; }
-  details[open] .day__i { transform: rotate(45deg); border-color: var(--blue); color: var(--blue); }
+  .faq__i :global(svg) { width: 13px; height: 13px; }
+  details[open] .faq__i { transform: rotate(45deg); border-color: var(--blue); color: var(--blue); }
 
-  .day__body { padding: 0 clamp(16px, 2.4vw, 26px) 24px; }
-  .day__body .ticks { margin-left: 72px; }
-  @media (max-width: 620px) { .day__body .ticks { margin-left: 0; } }
-
-  .assign {
-    margin-top: 16px;
-    margin-left: 72px;
-    font-size: 14.5px;
-    color: var(--body);
-    border-left: 2px solid var(--blue);
-    padding-left: 14px;
-  }
-  .assign b { color: var(--ink); display: block; font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 3px; }
-  @media (max-width: 620px) { .assign { margin-left: 0; } }
-
-  /* ---- stages ---- */
-  .stages {
-    margin-top: 36px;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 14px;
-  }
-  @media (max-width: 1040px) { .stages { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 680px)  { .stages { grid-template-columns: 1fr; } }
-
-  /* ---- message screenshots ---- */
-  .shots {
-    margin-top: 36px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(16px, 2.5vw, 28px);
-    align-items: start;
-  }
-  @media (max-width: 820px) { .shots { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 520px) { .shots { grid-template-columns: 1fr; max-width: 420px; } }
-
-  .shots figure { margin: 0; }
-
-  .shots img {
-    width: 100%;
-    height: auto;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    background: var(--bg-soft);
-  }
-
-  .shots figcaption {
-    margin-top: 12px;
-    font-size: 13.5px;
-    color: var(--muted);
-  }
-  .stages__d {
-    font-size: 12.5px;
-    font-weight: 700;
-    letter-spacing: .09em;
-    text-transform: uppercase;
-    color: var(--blue-deep);
-    display: block;
-    margin-bottom: 12px;
-  }
-  .stages h3 { font-size: 19px; }
-
-  /* ---- faq ---- */
-  .faq { margin-top: 32px; border-top: 1px solid var(--line); }
-  .faq details { border-bottom: 1px solid var(--line); }
-  .faq summary { padding-inline: 2px; font-size: 16.5px; letter-spacing: -0.015em; }
-  .faq p { padding: 0 2px 22px; max-width: 70ch; font-size: 15.5px; }
-
-  /* ---- cta ---- */
+  /* ---- close ---- */
   .cta {
     background: var(--blue);
     border-radius: 20px;
-    padding: clamp(32px, 5vw, 56px);
+    padding: clamp(28px, 5vw, 54px);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 28px;
+    gap: 26px;
     flex-wrap: wrap;
   }
   .cta h2 { color: #fff; }
-  .cta__p { color: #dbe2ff; margin-top: 10px; max-width: 46ch; }
+  .cta__p { color: #dbe2ff; margin-top: 10px; max-width: 42ch; }
   .cta__btn { background: #fff; color: var(--blue-deep); white-space: nowrap; }
   .cta__btn:hover { background: #eef1ff; }
 
   /* ---- footer ---- */
-  .foot { border-top: 1px solid var(--line); padding-block: 40px; }
+  .foot { border-top: 1px solid var(--line); padding-block: 36px; }
   .foot__inner {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px 40px;
+    gap: 18px 36px;
     align-items: center;
     justify-content: space-between;
     font-size: 14px;
     color: var(--muted);
   }
   .foot__inner b { color: var(--ink); display: block; }
-  .foot__links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .foot__links { display: flex; gap: 20px; flex-wrap: wrap; }
   .foot__links a { color: var(--body); transition: color .2s ease; }
   .foot__links a:hover { color: var(--blue-deep); }
+
+  /* ---- phone dock ---- */
+  .dock { display: none; }
+
+  @media (max-width: 720px) {
+    .dock {
+      display: flex;
+      position: fixed;
+      z-index: 9;
+      left: 12px;
+      right: 12px;
+      bottom: calc(12px + env(safe-area-inset-bottom));
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 9px 9px 20px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      box-shadow: 0 8px 28px rgba(10, 15, 31, .22);
+      transform: translateY(140%);
+      opacity: 0;
+      transition: transform .32s cubic-bezier(.22, .61, .36, 1), opacity .32s ease;
+    }
+    .dock--on { transform: none; opacity: 1; }
+
+    .dock__p {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+    }
+    .dock__p i {
+      font-style: normal;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .dock__b {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 20px;
+      border-radius: 999px;
+      background: var(--blue);
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .dock__b :global(svg) { width: 16px; height: 16px; }
+
+    /* room so the dock never covers the last line of the page */
+    .foot { padding-bottom: 92px; }
+  }
 </style>

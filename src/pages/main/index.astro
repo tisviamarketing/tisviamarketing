@@ -64,17 +64,17 @@ const schema = [
 >
   <main class="hero">
     <div class="hero__bg" aria-hidden="true">
-      <span class="blob blob--1"></span>
-      <span class="blob blob--2"></span>
-      <span class="blob blob--3"></span>
+      <span class="glow glow--1"></span>
+      <span class="glow glow--2"></span>
+      <span class="glow glow--3"></span>
     </div>
 
     <div class="wrap hero__inner">
       <header class="hero__top">
         <img
           src="/logo-marketing.png"
-          width="754"
-          height="406"
+          width="420"
+          height="226"
           alt="Tisvia Marketing"
           class="logo"
           fetchpriority="high"
@@ -140,47 +140,51 @@ const schema = [
     isolation: isolate;
   }
 
-  .hero__bg { position: absolute; inset: 0; z-index: -1; }
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    contain: strict;
+  }
 
-  /* Only transform and opacity move, so this runs on the compositor. */
-  .blob {
+  /* Radial gradients, not blurred boxes: a blur() filter re-renders an
+     offscreen buffer every frame and is what made this crawl on a phone.
+     A gradient is painted once and then only moved by the compositor. */
+  .glow {
     position: absolute;
     border-radius: 50%;
-    filter: blur(90px);
     will-change: transform;
+    transform: translateZ(0);
   }
-  .blob--1 {
+  .glow--1 {
+    width: 95vmax; height: 95vmax;
+    top: -40vmax; left: -30vmax;
+    background: radial-gradient(closest-side, #3d5afe 0%, rgba(61, 90, 254, .55) 45%, rgba(61, 90, 254, 0) 100%);
+    animation: drift1 28s ease-in-out infinite alternate;
+  }
+  .glow--2 {
+    width: 82vmax; height: 82vmax;
+    bottom: -34vmax; right: -26vmax;
+    background: radial-gradient(closest-side, #6f8bff 0%, rgba(111, 139, 255, .42) 45%, rgba(111, 139, 255, 0) 100%);
+    animation: drift2 34s ease-in-out infinite alternate;
+  }
+  .glow--3 {
     width: 62vmax; height: 62vmax;
-    top: -24vmax; left: -16vmax;
-    background: #3d5afe;
-    opacity: .85;
-    animation: drift1 24s ease-in-out infinite alternate;
-  }
-  .blob--2 {
-    width: 54vmax; height: 54vmax;
-    bottom: -22vmax; right: -14vmax;
-    background: #6f8bff;
-    opacity: .68;
-    animation: drift2 30s ease-in-out infinite alternate;
-  }
-  .blob--3 {
-    width: 40vmax; height: 40vmax;
-    top: 30%; left: 46%;
-    background: #122ea8;
-    opacity: .85;
-    animation: drift3 26s ease-in-out infinite alternate;
+    top: 24%; left: 40%;
+    background: radial-gradient(closest-side, #1230b4 0%, rgba(18, 48, 180, .5) 50%, rgba(18, 48, 180, 0) 100%);
+    animation: drift3 30s ease-in-out infinite alternate;
   }
   @keyframes drift1 {
     from { transform: translate3d(0, 0, 0) scale(1); }
-    to   { transform: translate3d(12vmax, 8vmax, 0) scale(1.14); }
+    to   { transform: translate3d(10vmax, 7vmax, 0) scale(1.12); }
   }
   @keyframes drift2 {
-    from { transform: translate3d(0, 0, 0) scale(1.1); }
-    to   { transform: translate3d(-14vmax, -9vmax, 0) scale(1); }
+    from { transform: translate3d(0, 0, 0) scale(1.08); }
+    to   { transform: translate3d(-11vmax, -7vmax, 0) scale(1); }
   }
   @keyframes drift3 {
     from { transform: translate3d(0, 0, 0) scale(1); }
-    to   { transform: translate3d(-10vmax, 11vmax, 0) scale(1.2); }
+    to   { transform: translate3d(-8vmax, 9vmax, 0) scale(1.18); }
   }
 
   .hero__inner {
@@ -289,5 +293,20 @@ const schema = [
 
   @media (max-width: 720px) {
     h1 br { display: none; }
+  }
+
+  /* the whole page is one screen, so on a phone it has to actually fit one */
+  @media (max-width: 560px) {
+    .hero__inner { gap: clamp(26px, 4vh, 44px); }
+    .lede { font-size: 15.5px; line-height: 1.55; }
+    .sub { font-size: 14px; margin-top: 12px; }
+    .socials { margin-top: 24px; }
+  }
+
+  @media (max-width: 480px) {
+    .academy-link { font-size: 13.5px; }
+    .socials { gap: 9px; }
+    .socials a { width: 44px; height: 44px; }
+    .hero__foot { font-size: 12.5px; gap: 6px 16px; }
   }
 </style>

@@ -1,213 +1,126 @@
-export interface Day {
-  n: string;
-  /** Phase label from the programme brochure. */
-  phase: string;
-  title: string;
-  points: string[];
-  assignment: string;
-}
+/**
+ * Academy page content.
+ *
+ * The page is deliberately short: every block is a few lines. Keep it that way
+ * when editing — long copy is a regression here, not an improvement.
+ *
+ * Legal qualifiers in this file are deliberate and must survive edits:
+ *  - live ad spend is separate from the fee,
+ *  - the certificate is conditional on assignments and assessment,
+ *  - post-programme support is *proposed*, not promised,
+ *  - no result, income or placement is guaranteed.
+ */
 
-export const CURRICULUM: Day[] = [
+/** The ten days, one line each. Titles only — the detail lives in the phases. */
+export const DAYS = [
+  { n: '01', t: 'Meta ads and the funnel' },
+  { n: '02', t: 'Business Manager and tracking' },
+  { n: '03', t: 'Objectives and audiences' },
+  { n: '04', t: 'Creative and ad copy' },
+  { n: '05', t: 'Lead gen and WhatsApp' },
+  { n: '06', t: 'Sales and e-commerce' },
+  { n: '07', t: 'Live campaign launch' },
+  { n: '08', t: 'Performance and optimisation' },
+  { n: '09', t: 'Scaling strategies' },
+  { n: '10', t: 'Campaign audit and career' },
+] as const;
+
+/** Three-card timeline across the ten days. */
+export const PHASES = [
   {
-    n: '01',
-    phase: 'Foundation',
-    title: 'Introduction to Meta Ads & digital advertising',
-    points: [
-      'Meta ecosystem and Facebook vs Instagram Ads',
-      'Campaign objectives and advertising funnels',
-      'Ad auctions and Ads Manager introduction',
-      'Business Portfolio overview',
-    ],
-    assignment: 'Analyse a business and identify its advertising objectives.',
+    days: 'Days 1–4',
+    title: 'Foundation',
+    body: 'The Meta ecosystem, Business Manager, the Pixel and Conversions API, campaign objectives, audiences, creative and copy.',
   },
   {
-    n: '02',
-    phase: 'Foundation',
-    title: 'Business Manager & tracking setup',
-    points: [
-      'Business Portfolio and ad account setup',
-      'Business assets, Page and Instagram connections',
-      'Access permissions and asset management',
-      'Meta Pixel, Conversions API and event testing',
-    ],
-    assignment: 'Complete an advertising setup checklist.',
+    days: 'Days 5–8',
+    title: 'Campaigns',
+    body: 'Lead generation, WhatsApp and e-commerce campaigns. You launch a live campaign and then read its numbers back.',
   },
   {
-    n: '03',
-    phase: 'Strategy',
-    title: 'Campaign objectives & audience targeting',
-    points: [
-      'Awareness, Traffic, Engagement, Leads, App Promotion and Sales',
-      'Campaign, ad set and ad structure',
-      'Budgeting and audience strategy',
-      'Detailed, Custom, Lookalike and Advantage+ audiences',
-    ],
-    assignment: 'Develop three audience strategies for a business.',
+    days: 'Days 9–10',
+    title: 'Scale',
+    body: 'Scaling, creative fatigue, a real campaign audit, client reporting and pricing your own service.',
   },
-  {
-    n: '04',
-    phase: 'Strategy',
-    title: 'Creative strategy & high-converting ad copy',
-    points: [
-      'Images, carousels, Reels and UGC formats',
-      'Primary text, headlines, hooks, offers and CTAs',
-      'Creative angles and ad messaging',
-      'Using Meta Ad Library for research',
-    ],
-    assignment: 'Prepare two creatives and three ad copy variations.',
-  },
-  {
-    n: '05',
-    phase: 'Campaigns',
-    title: 'Lead generation & WhatsApp campaigns',
-    points: [
-      'Instant Forms and higher-intent forms',
-      'Lead quality and qualification',
-      'WhatsApp campaign setup and conversation flows',
-      'Cost per lead, follow-up and basic CRM',
-    ],
-    assignment: 'Build a lead-generation or WhatsApp campaign.',
-  },
-  {
-    n: '06',
-    phase: 'Campaigns',
-    title: 'Sales campaigns & e-commerce advertising',
-    points: [
-      'Website sales and purchase optimisation',
-      'Product catalogues and dynamic product ads',
-      'Retargeting and funnel structure',
-      'Budget allocation and profitability',
-    ],
-    assignment: 'Design an e-commerce sales funnel.',
-  },
-  {
-    n: '07',
-    phase: 'Launch + tune',
-    title: 'Campaign launch & practical workshop',
-    points: [
-      'Live campaign creation',
-      'Budget and placement selection',
-      'Creative upload and publishing',
-      'Ad policy checks, rejections and troubleshooting',
-    ],
-    assignment: 'Build a complete campaign in class. Any live ad spend is separate.',
-  },
-  {
-    n: '08',
-    phase: 'Launch + tune',
-    title: 'Performance analysis & campaign optimisation',
-    points: [
-      'Ads Manager reporting',
-      'CPM, CTR, CPC, CPL, CPA and ROAS',
-      'Diagnosing high costs and weak conversions',
-      'Creative and audience testing',
-    ],
-    assignment: 'Analyse a sample campaign report and recommend improvements.',
-  },
-  {
-    n: '09',
-    phase: 'Scale & career',
-    title: 'Scaling strategies & advanced advertising',
-    points: [
-      'Horizontal and vertical scaling',
-      'Budget scaling and Advantage+ campaigns',
-      'Retargeting and creative fatigue',
-      'Making data-based scaling decisions',
-    ],
-    assignment: 'Develop a scaling plan for a case-study campaign.',
-  },
-  {
-    n: '10',
-    phase: 'Scale & career',
-    title: 'Real-world campaign audit & career roadmap',
-    points: [
-      'Student campaign audits and troubleshooting',
-      'Client reporting and communication',
-      'Freelancing and service pricing',
-      'Final assessment and individual feedback',
-    ],
-    assignment: 'Present a campaign strategy and complete the final assessment.',
-  },
+] as const;
+
+/** Day 7, shown on the page as a sample of what a session actually is. */
+export const SAMPLE_DAY = {
+  label: 'Day 7',
+  title: 'Launch a live campaign',
+  intro: 'What you actually do in the session:',
+  steps: [
+    'Build a campaign end to end in Ads Manager',
+    'Choose the budget, the placements and the audience you argued for on Day 3',
+    'Upload the creative, write the copy, publish',
+    'Handle the policy checks and rejections when they come',
+  ],
+  close: 'You leave the session with a campaign that is running.',
+  note: 'Any live advertising spend is separate from the programme fee.',
+} as const;
+
+/** What is missing for most people who have already watched the tutorials. */
+export const PROBLEM = [
+  'You have watched the tutorials and still cannot structure a campaign.',
+  'The Pixel fires, or it does not, and you cannot tell which.',
+  'Cost per lead climbs and you do not know which lever to pull.',
+  'You can launch an ad. You cannot read the report.',
+  'Nobody has ever looked at your campaign and told you what is wrong with it.',
+];
+
+export const INCLUDED = [
+  '10 live sessions, 2 hours a day',
+  '20 hours of live Ads Manager training',
+  '10 assignments with individual feedback',
+  'Recordings, case studies, templates and checklists',
+  'A final campaign project and a Certificate of Completion',
 ];
 
 export const FAQS: { q: string; a: string }[] = [
   {
-    q: 'Do I need prior experience in Meta Ads?',
-    a: 'No. The programme is designed for beginners as well as freelancers, business owners and working marketers.',
+    q: 'Do I need any experience?',
+    a: 'No. It starts at zero and ends with live campaigns. Beginners, freelancers, business owners and working marketers all sit in the same room.',
   },
   {
-    q: 'Will the sessions be live?',
-    a: 'Yes. The programme is delivered through live, interactive online sessions with practical demonstrations and student practice.',
+    q: 'Are the sessions live?',
+    a: 'Yes. Ten live online sessions, two hours each, with Ads Manager on screen. Every session is recorded and the recordings are yours.',
   },
   {
-    q: 'Will I get recordings of the sessions?',
-    a: 'Yes. Recordings of every live session will be provided so you can revisit the lessons and revise the concepts.',
+    q: 'What language are they in?',
+    a: 'Malayalam and English.',
   },
   {
-    q: 'What language will the sessions be in?',
-    a: 'Sessions are delivered in Malayalam and English.',
-  },
-  {
-    q: 'Will I run real ads during the programme?',
-    a: 'The programme includes practical campaign setup and demonstrations. Any live advertising spend is separate from the programme fee.',
-  },
-  {
-    q: 'What does the programme cost?',
-    a: 'The 10-day mentorship programme is ₹9,999 per person. Any live advertising spend during the practical sessions is separate from the fee.',
+    q: 'Will I run real ads?',
+    a: 'You build and launch campaigns in class. Any live advertising spend is separate from the programme fee.',
   },
   {
     q: 'When does the next batch start?',
-    a: 'Message us on WhatsApp for the next start date and the session times. The programme runs for ten days with a two-hour live session each day.',
+    a: 'Message us on WhatsApp for the next start date and the session times.',
   },
   {
-    q: 'Will I receive a certificate?',
-    a: 'Students who complete the required assignments and assessment will receive a Certificate of Completion from Tisvia Marketing Academy.',
+    q: 'Do I get a certificate?',
+    a: 'A Certificate of Completion from Tisvia Marketing Academy, once the assignments and the final assessment are done.',
   },
   {
-    q: 'Are campaign results or client projects guaranteed?',
-    a: 'No. The programme provides training, practice and educational feedback. Campaign performance, income and client acquisition depend on individual execution and other factors.',
+    q: 'Are results guaranteed?',
+    a: 'No. You get training, practice and feedback. Campaign performance, income and clients depend on your own execution.',
   },
 ];
 
-export const STAGES = [
-  { days: 'Days 1–2',  title: 'Foundation',    body: 'Ecosystem, Business Portfolio and tracking.' },
-  { days: 'Days 3–4',  title: 'Strategy',      body: 'Objectives, audiences, creatives and copy.' },
-  { days: 'Days 5–6',  title: 'Campaigns',     body: 'Lead gen, WhatsApp and e-commerce sales.' },
-  { days: 'Days 7–8',  title: 'Launch + tune', body: 'Live launch and performance analysis.' },
-  { days: 'Days 9–10', title: 'Scale & career',body: 'Scaling, audits and career roadmap.' },
-];
-
-/** "How you will learn" — the mentorship-style cards from the brochure. */
-export const STYLE = [
-  {
-    h: 'Live interactive sessions',
-    p: 'Direct instruction, live Ads Manager demonstrations and in-class questions.',
-  },
-  {
-    h: 'Hands-on campaign training',
-    p: 'Students practise campaign setup. Any live advertising spend is separate.',
-  },
-  {
-    h: 'Daily assignments and reviews',
-    p: 'Tasks after each session, with practical feedback on setup, targeting, creatives and reporting.',
-  },
-  {
-    h: 'Real client case studies',
-    p: 'Examples of campaign strategy, optimisation and communicating results to clients.',
-  },
-];
-
-/**
- * Enrolment terms.
- * TODO (client): add the batch start date and session times once fixed.
- * Morning and evening batches exist but are deliberately not published yet.
- */
+/** Enrolment terms. Morning and evening batches exist but are not published yet. */
 export const ENROLMENT = {
   fee: '₹9,999',
   feeUnit: 'per person',
   feeAmount: '9999',
   currency: 'INR',
 } as const;
+
+export const MENTOR_STATS = [
+  { n: '4+', s: 'Years on live accounts' },
+  { n: '100+', s: 'Clients worked with' },
+  { n: '₹10 Cr', s: 'Ad spend managed, up to' },
+  { n: '100+', s: 'Students trained' },
+] as const;
 
 /**
  * Message screenshots supplied by the client.
@@ -216,21 +129,21 @@ export const ENROLMENT = {
  */
 export const TESTIMONIALS = [
   {
-    src: '/t/t1.jpg',
+    src: '/t/t1',
     w: 620,
     h: 672,
     alt: 'LinkedIn message from a performance marketing student: "I am one of your performance marketing student from HACA, your classes are interesting and happy to to learn from you."',
-    cap: 'A performance marketing student, on LinkedIn.',
+    cap: 'A student, on LinkedIn.',
   },
   {
-    src: '/t/t2.jpg',
+    src: '/t/t2',
     w: 620,
     h: 954,
     alt: 'WhatsApp class group showing a session reminder and a student replying "It was great session. Great insights."',
     cap: 'Inside a live class group.',
   },
   {
-    src: '/t/t3.jpg',
+    src: '/t/t3',
     w: 342,
     h: 605,
     alt: 'WhatsApp message from a client reporting cost per result falling from ₹23 to ₹7 and 74 enquiries from ₹550 spent.',

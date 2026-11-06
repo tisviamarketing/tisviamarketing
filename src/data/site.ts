@@ -1,11 +1,11 @@
 /**
  * Single source of truth for contact details and links.
  *
- * TODO (client): confirm `whatsapp` and `email` before this goes to ads.
  * `whatsapp` is digits only, country code first, no "+" and no spaces.
+ * TODO (client): confirm `email` — still a placeholder.
  */
 export const CONTACT = {
-  whatsapp: '910000000000',
+  whatsapp: '918891365571',
   email: 'hello@tisviamarketing.in',
   instagram: 'https://www.instagram.com/tisviamarketing/',
   linkedin: 'https://www.linkedin.com/in/tisminmanoj/',

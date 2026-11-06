@@ -8,9 +8,11 @@ interface Props {
   /** JSON-LD objects, serialised into one script tag each. */
   schema?: Record<string, unknown>[];
   ogImage?: string;
+  /** Colours the browser chrome on mobile. */
+  themeColor?: string;
 }
 
-const { title, description, canonical, schema = [], ogImage } = Astro.props;
+const { title, description, canonical, schema = [], ogImage, themeColor = '#ffffff' } = Astro.props;
 const origin = new URL(canonical).origin;
 const image = ogImage ?? `${origin}/og.png`;
 ---
@@ -35,7 +37,7 @@ const image = ogImage ?? `${origin}/og.png`;
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={image} />
 
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content={themeColor} />
   <link rel="icon" href="/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
 

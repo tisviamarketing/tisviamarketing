@@ -55,8 +55,20 @@ const schema = [
 ];
 ---
 
-<Layout title={title} description={description} canonical={`${SITES.agency}/`} schema={schema}>
+<Layout
+  title={title}
+  description={description}
+  canonical={`${SITES.agency}/`}
+  schema={schema}
+  themeColor="#0b1a6b"
+>
   <main class="hero">
+    <div class="hero__bg" aria-hidden="true">
+      <span class="blob blob--1"></span>
+      <span class="blob blob--2"></span>
+      <span class="blob blob--3"></span>
+    </div>
+
     <div class="wrap hero__inner">
       <header class="hero__top">
         <img
@@ -120,13 +132,58 @@ const schema = [
 
 <style>
   .hero {
-    background:
-      radial-gradient(60rem 40rem at 88% -12%, var(--blue-wash), transparent 68%),
-      var(--bg);
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    overflow: hidden;
+    background: #0b1a6b;
+    isolation: isolate;
+  }
+
+  .hero__bg { position: absolute; inset: 0; z-index: -1; }
+
+  /* Only transform and opacity move, so this runs on the compositor. */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    will-change: transform;
+  }
+  .blob--1 {
+    width: 62vmax; height: 62vmax;
+    top: -24vmax; left: -16vmax;
+    background: #3d5afe;
+    opacity: .85;
+    animation: drift1 24s ease-in-out infinite alternate;
+  }
+  .blob--2 {
+    width: 54vmax; height: 54vmax;
+    bottom: -22vmax; right: -14vmax;
+    background: #6f8bff;
+    opacity: .68;
+    animation: drift2 30s ease-in-out infinite alternate;
+  }
+  .blob--3 {
+    width: 40vmax; height: 40vmax;
+    top: 30%; left: 46%;
+    background: #122ea8;
+    opacity: .85;
+    animation: drift3 26s ease-in-out infinite alternate;
+  }
+  @keyframes drift1 {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to   { transform: translate3d(12vmax, 8vmax, 0) scale(1.14); }
+  }
+  @keyframes drift2 {
+    from { transform: translate3d(0, 0, 0) scale(1.1); }
+    to   { transform: translate3d(-14vmax, -9vmax, 0) scale(1); }
+  }
+  @keyframes drift3 {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to   { transform: translate3d(-10vmax, 11vmax, 0) scale(1.2); }
   }
 
   .hero__inner {
-    min-height: 100svh;
     display: grid;
     grid-template-rows: auto 1fr auto;
     gap: clamp(40px, 7vh, 72px);
@@ -140,7 +197,11 @@ const schema = [
     gap: 20px;
   }
 
-  .logo { width: clamp(104px, 12vw, 128px); height: auto; }
+  .logo {
+    width: clamp(104px, 12vw, 128px);
+    height: auto;
+    filter: brightness(0) invert(1);
+  }
 
   .academy-link {
     display: inline-flex;
@@ -148,30 +209,37 @@ const schema = [
     gap: 7px;
     font-size: 14.5px;
     font-weight: 600;
-    color: var(--blue-deep);
+    color: rgba(255, 255, 255, .82);
     padding: 10px 2px;
-    transition: gap .2s ease;
+    transition: gap .2s ease, color .2s ease;
   }
   .academy-link :global(svg) { width: 15px; height: 15px; }
-  .academy-link:hover { gap: 12px; }
+  .academy-link:hover { gap: 12px; color: #fff; }
 
   .hero__body { align-self: center; }
 
+  .eyebrow { color: #a9bcff; }
+
   h1 {
+    color: #fff;
     font-size: clamp(38px, 6.6vw, 78px);
     font-weight: 800;
     letter-spacing: -0.045em;
     max-width: 15ch;
   }
-  h1 em { font-style: normal; color: var(--blue); }
+  h1 em { font-style: normal; color: #a9bcff; }
 
-  .lede { margin-top: clamp(22px, 3vh, 30px); max-width: 56ch; }
+  .lede {
+    margin-top: clamp(22px, 3vh, 30px);
+    max-width: 56ch;
+    color: rgba(255, 255, 255, .84);
+  }
 
   .sub {
     margin-top: 14px;
     max-width: 52ch;
     font-size: 15.5px;
-    color: var(--muted);
+    color: rgba(255, 255, 255, .6);
   }
 
   .actions {
@@ -181,26 +249,31 @@ const schema = [
     margin-top: clamp(28px, 4vh, 38px);
   }
 
+  /* on blue, the primary button inverts */
+  .actions :global(.btn--solid) { background: #fff; color: var(--blue-deep); }
+  .actions :global(.btn--solid:hover) { background: #e8ecff; }
+  .actions :global(.btn--line) { border-color: rgba(255, 255, 255, .38); color: #fff; }
+  .actions :global(.btn--line:hover) { border-color: #fff; background: rgba(255, 255, 255, .1); }
+
   .socials {
     display: flex;
     gap: 10px;
     margin-top: clamp(28px, 4vh, 38px);
   }
-
   .socials a {
     width: 46px;
     height: 46px;
     display: grid;
     place-items: center;
-    border: 1px solid var(--line-strong);
+    border: 1px solid rgba(255, 255, 255, .3);
     border-radius: 50%;
-    color: var(--body);
+    color: rgba(255, 255, 255, .85);
     transition: color .2s ease, border-color .2s ease, background-color .2s ease;
   }
   .socials a:hover {
-    color: #fff;
-    background: var(--blue);
-    border-color: var(--blue);
+    color: var(--blue-deep);
+    background: #fff;
+    border-color: #fff;
   }
   .socials :global(svg) { width: 18px; height: 18px; }
 
@@ -209,12 +282,11 @@ const schema = [
     flex-wrap: wrap;
     gap: 8px 22px;
     padding-top: 22px;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid rgba(255, 255, 255, .16);
     font-size: 13.5px;
-    color: var(--muted);
+    color: rgba(255, 255, 255, .58);
   }
 
-  /* the headline measure only works once there is room for it */
   @media (max-width: 720px) {
     h1 br { display: none; }
   }

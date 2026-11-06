@@ -2,31 +2,39 @@
 
 **One** Vercel project serves both sites from the `main` branch of this repo.
 
-| URL                        | Serves            |
-|----------------------------|-------------------|
-| tisviamarketing.in         | `index.html`      |
-| academy.tisviamarketing.in | `academy/`        |
+| URL                        | Serves                  |
+|----------------------------|-------------------------|
+| tisviamarketing.in         | `site/index.html`       |
+| academy.tisviamarketing.in | `site/academy/`         |
 
 Plain HTML + CSS. No build step. No dependencies.
 
 ## Vercel project settings
 - Framework Preset: **Other**
-- Root Directory: *(leave as the repo root — do not set it)*
+- Root Directory: **`site`**
 - Build Command / Output Directory / Install Command: *(all empty)*
 
-Both domains are added to this same project under **Settings → Domains**.
+Everything the site needs lives inside `site/`, including `vercel.json` —
+Vercel treats the Root Directory as the project root, so the config must
+sit in there, not at the repo root.
+
+Both domains are attached to this same project under **Settings → Domains**.
 
 ## How the split works
-`vercel.json` rewrites every request whose **Host** is
-`academy.tisviamarketing.in` to the `/academy` folder. Every other host
-falls through to the repo root, so the apex domain gets the landing page.
+`site/vercel.json` rewrites every request whose **Host** is
+`academy.tisviamarketing.in` into the `academy` folder. Every other host
+falls through to `site/index.html`, so the apex domain gets the landing page.
 
-If the academy domain ever changes, update the `has.value` host in
-`vercel.json` to match — it is an exact string match.
+If the academy subdomain ever changes, update the `has.value` host in
+`site/vercel.json` — it is an exact string match.
 
 ## DNS (GoDaddy)
-Vercel shows the exact records under **Settings → Domains**.
-Copy the values from that screen; do not reuse values from old notes.
+Current live records:
 
-GoDaddy **Domain Forwarding** must be off, or it adds its own `A` records
-at `@` that fight Vercel's and cannot be deleted while the service is on.
+| Type  | Name      | Value                                   |
+|-------|-----------|-----------------------------------------|
+| A     | `@`       | `216.198.79.1`                          |
+| CNAME | `academy` | `a28cf879de88f953.vercel-dns-017.com`   |
+
+GoDaddy **Domain Forwarding** must stay off. While it is on it adds its own
+`A` records at `@` that fight Vercel's and cannot be deleted.

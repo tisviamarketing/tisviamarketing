@@ -1,5 +1,7 @@
 export interface Day {
   n: string;
+  /** Phase label from the programme brochure. */
+  phase: string;
   title: string;
   points: string[];
   assignment: string;
@@ -8,17 +10,19 @@ export interface Day {
 export const CURRICULUM: Day[] = [
   {
     n: '01',
-    title: 'Introduction to Meta Ads',
+    phase: 'Foundation',
+    title: 'Introduction to Meta Ads & digital advertising',
     points: [
       'Meta ecosystem and Facebook vs Instagram Ads',
       'Campaign objectives and advertising funnels',
       'Ad auctions and Ads Manager introduction',
       'Business Portfolio overview',
     ],
-    assignment: 'Analyse a business and identify suitable campaign objectives.',
+    assignment: 'Analyse a business and identify its advertising objectives.',
   },
   {
     n: '02',
+    phase: 'Foundation',
     title: 'Business Manager & tracking setup',
     points: [
       'Business Portfolio and ad account setup',
@@ -26,10 +30,11 @@ export const CURRICULUM: Day[] = [
       'Access permissions and asset management',
       'Meta Pixel, Conversions API and event testing',
     ],
-    assignment: 'Complete the account and tracking setup checklist.',
+    assignment: 'Complete an advertising setup checklist.',
   },
   {
     n: '03',
+    phase: 'Strategy',
     title: 'Campaign objectives & audience targeting',
     points: [
       'Awareness, Traffic, Engagement, Leads, App Promotion and Sales',
@@ -37,21 +42,23 @@ export const CURRICULUM: Day[] = [
       'Budgeting and audience strategy',
       'Detailed, Custom, Lookalike and Advantage+ audiences',
     ],
-    assignment: 'Develop three audience strategies.',
+    assignment: 'Develop three audience strategies for a business.',
   },
   {
     n: '04',
-    title: 'Creative strategy & ad copy',
+    phase: 'Strategy',
+    title: 'Creative strategy & high-converting ad copy',
     points: [
       'Images, carousels, Reels and UGC formats',
       'Primary text, headlines, hooks, offers and CTAs',
       'Creative angles and ad messaging',
       'Using Meta Ad Library for research',
     ],
-    assignment: 'Prepare two creatives and three copy variations.',
+    assignment: 'Prepare two creatives and three ad copy variations.',
   },
   {
     n: '05',
+    phase: 'Campaigns',
     title: 'Lead generation & WhatsApp campaigns',
     points: [
       'Instant Forms and higher-intent forms',
@@ -59,11 +66,12 @@ export const CURRICULUM: Day[] = [
       'WhatsApp campaign setup and conversation flows',
       'Cost per lead, follow-up and basic CRM',
     ],
-    assignment: 'Build a lead generation or WhatsApp campaign.',
+    assignment: 'Build a lead-generation or WhatsApp campaign.',
   },
   {
     n: '06',
-    title: 'Sales & e-commerce advertising',
+    phase: 'Campaigns',
+    title: 'Sales campaigns & e-commerce advertising',
     points: [
       'Website sales and purchase optimisation',
       'Product catalogues and dynamic product ads',
@@ -74,48 +82,51 @@ export const CURRICULUM: Day[] = [
   },
   {
     n: '07',
-    title: 'Campaign launch workshop',
+    phase: 'Launch + tune',
+    title: 'Campaign launch & practical workshop',
     points: [
       'Live campaign creation',
       'Budget and placement selection',
       'Creative upload and publishing',
       'Ad policy checks, rejections and troubleshooting',
     ],
-    assignment:
-      'Build a campaign during the workshop. Live ad spend, if used, is separate.',
+    assignment: 'Build a complete campaign in class. Any live ad spend is separate.',
   },
   {
     n: '08',
-    title: 'Performance analysis & optimisation',
+    phase: 'Launch + tune',
+    title: 'Performance analysis & campaign optimisation',
     points: [
       'Ads Manager reporting',
       'CPM, CTR, CPC, CPL, CPA and ROAS',
       'Diagnosing high costs and weak conversions',
       'Creative and audience testing',
     ],
-    assignment: 'Analyse a sample report and recommend improvements.',
+    assignment: 'Analyse a sample campaign report and recommend improvements.',
   },
   {
     n: '09',
-    title: 'Scaling & advanced advertising',
+    phase: 'Scale & career',
+    title: 'Scaling strategies & advanced advertising',
     points: [
       'Horizontal and vertical scaling',
       'Budget scaling and Advantage+ campaigns',
       'Retargeting and creative fatigue',
       'Making data-based scaling decisions',
     ],
-    assignment: 'Develop a campaign scaling plan.',
+    assignment: 'Develop a scaling plan for a case-study campaign.',
   },
   {
     n: '10',
-    title: 'Campaign audit & career roadmap',
+    phase: 'Scale & career',
+    title: 'Real-world campaign audit & career roadmap',
     points: [
       'Student campaign audits and troubleshooting',
       'Client reporting and communication',
       'Freelancing and service pricing',
       'Final assessment and individual feedback',
     ],
-    assignment: 'Present a campaign strategy and complete the assessment.',
+    assignment: 'Present a campaign strategy and complete the final assessment.',
   },
 ];
 
@@ -141,6 +152,14 @@ export const FAQS: { q: string; a: string }[] = [
     a: 'The programme includes practical campaign setup and demonstrations. Any live advertising spend is separate from the programme fee.',
   },
   {
+    q: 'What does the programme cost?',
+    a: 'The 10-day mentorship programme is ₹9,999 per person. Any live advertising spend during the practical sessions is separate from the fee.',
+  },
+  {
+    q: 'When do the batches run?',
+    a: 'There is a morning batch and an evening batch, each two hours a day for ten days. Message us on WhatsApp for the next start date and the exact session times.',
+  },
+  {
     q: 'Will I receive a certificate?',
     a: 'Students who complete the required assignments and assessment will receive a Certificate of Completion from Tisvia Marketing Academy.',
   },
@@ -151,8 +170,45 @@ export const FAQS: { q: string; a: string }[] = [
 ];
 
 export const STAGES = [
-  { days: 'Days 1–2', title: 'Foundation', body: 'Understand Meta Ads and prepare business assets and tracking.' },
-  { days: 'Days 3–4', title: 'Strategy', body: 'Choose objectives, audiences, creatives and messaging.' },
-  { days: 'Days 5–8', title: 'Campaigns', body: 'Build lead and sales campaigns, launch and analyse performance.' },
-  { days: 'Days 9–10', title: 'Scale & career', body: 'Explore scaling, audit campaigns and plan your next steps.' },
+  { days: 'Days 1–2',  title: 'Foundation',    body: 'Ecosystem, Business Portfolio and tracking.' },
+  { days: 'Days 3–4',  title: 'Strategy',      body: 'Objectives, audiences, creatives and copy.' },
+  { days: 'Days 5–6',  title: 'Campaigns',     body: 'Lead gen, WhatsApp and e-commerce sales.' },
+  { days: 'Days 7–8',  title: 'Launch + tune', body: 'Live launch and performance analysis.' },
+  { days: 'Days 9–10', title: 'Scale & career',body: 'Scaling, audits and career roadmap.' },
 ];
+
+/** "How you will learn" — the mentorship-style cards from the brochure. */
+export const STYLE = [
+  {
+    h: 'Live interactive sessions',
+    p: 'Direct instruction, live Ads Manager demonstrations and in-class questions.',
+  },
+  {
+    h: 'Hands-on campaign training',
+    p: 'Students practise campaign setup. Any live advertising spend is separate.',
+  },
+  {
+    h: 'Daily assignments and reviews',
+    p: 'Tasks after each session, with practical feedback on setup, targeting, creatives and reporting.',
+  },
+  {
+    h: 'Real client case studies',
+    p: 'Examples of campaign strategy, optimisation and communicating results to clients.',
+  },
+];
+
+/**
+ * Enrolment terms.
+ * TODO (client): add the next batch start date and the exact session times
+ * once they are fixed — they are not in the brochure.
+ */
+export const ENROLMENT = {
+  fee: '₹9,999',
+  feeUnit: 'per person',
+  feeAmount: '9999',
+  currency: 'INR',
+  batches: [
+    { h: 'Morning batch', p: 'Two hours each morning, ten days running.' },
+    { h: 'Evening batch', p: 'Two hours each evening, for people who work days.' },
+  ],
+} as const;

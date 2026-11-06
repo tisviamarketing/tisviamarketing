@@ -156,7 +156,9 @@ const schema = [
 >
   <a class="skip" href="#main">Skip to content</a>
 
-  <header class="bar">
+  <span id="top-sentinel" aria-hidden="true"></span>
+
+  <header class="bar bar--over">
     <div class="wrap bar__inner">
       <a href="#top" class="bar__brand" aria-label="Tisvia Marketing Academy — top of page">
         <img src="/logo-academy.png" width="752" height="402" alt="Tisvia Marketing Academy" fetchpriority="high" />
@@ -173,22 +175,40 @@ const schema = [
 
   <main id="main">
     <!-- ───────────────── hero ───────────────── -->
-    <section class="section hero" id="top">
+    <section class="hero" id="top">
+      <div class="hero__bg" aria-hidden="true">
+        <span class="blob blob--1"></span>
+        <span class="blob blob--2"></span>
+        <span class="blob blob--3"></span>
+      </div>
+
+      <div class="wrap hero__inner">
+        <h1>Learn Meta Ads. <em>Build real campaigns.</em></h1>
+      </div>
+
+      <a class="cue" href="#programme-intro" aria-label="Scroll to the programme">
+        <span class="cue__line" aria-hidden="true"><span></span></span>
+        <span class="cue__txt">Scroll</span>
+      </a>
+    </section>
+
+    <!-- ───────────────── intro ───────────────── -->
+    <section class="section" id="programme-intro">
       <div class="wrap">
-        <p class="eyebrow">Live mentorship · Malayalam + English · {ENROLMENT.fee}</p>
-        <h1>Learn Meta Ads.<br /><em>Build real campaigns.</em></h1>
-        <p class="lede hero__lede">
-          A 10-day live mentorship programme designed to help you understand Meta advertising, build
-          campaigns, read performance data and make informed optimisation decisions.
+        <p class="eyebrow reveal">Live mentorship · Malayalam + English · {ENROLMENT.fee}</p>
+        <h2 class="reveal">A 10-day live mentorship in Meta advertising.</h2>
+        <p class="lede reveal" style="margin-top:22px">
+          Built to help you understand Meta advertising, build campaigns, read performance data and
+          make informed optimisation decisions — not just click around Ads Manager.
         </p>
-        <div class="actions">
+        <div class="actions reveal">
           <a class="btn btn--solid" href={enquiry} target="_blank" rel="noopener">
             <Icon name="whatsapp" /> Join the next batch
           </a>
           <a class="btn btn--line" href="#curriculum">See the curriculum</a>
         </div>
 
-        <ul class="stats stats--hero">
+        <ul class="stats stats--hero reveal">
           {quickStats.map((s) => (
             <li><b>{s.n}</b><span>{s.s}</span></li>
           ))}
@@ -200,9 +220,9 @@ const schema = [
     <section class="section" id="about">
       <div class="wrap split">
         <div>
-          <p class="eyebrow">About the academy</p>
-          <h2>Learn by understanding the work behind the ads.</h2>
-          <p class="lede" style="margin-top:22px">
+          <p class="eyebrow reveal">About the academy</p>
+          <h2 class="reveal">Learn by understanding the work behind the ads.</h2>
+          <p class="lede reveal" style="margin-top:22px">
             Tisvia Marketing Academy focuses on practical digital marketing education. The programme
             combines structured lessons with live demonstrations and assignments so students can
             apply what they learn to real campaign scenarios.
@@ -214,7 +234,7 @@ const schema = [
           </p>
         </div>
 
-        <aside class="card mentor">
+        <aside class="card mentor reveal">
           <p class="eyebrow" style="margin-bottom:10px">Your mentor</p>
           <h3>Tismin Manoj</h3>
           <p>
@@ -239,13 +259,13 @@ const schema = [
     <!-- ───────────────── experience ───────────────── -->
     <section class="section">
       <div class="wrap">
-        <p class="eyebrow">Experience &amp; learning</p>
-        <h2>Built around practical experience.</h2>
-        <p class="lede" style="margin-top:18px">
+        <p class="eyebrow reveal">Experience &amp; learning</p>
+        <h2 class="reveal">Built around practical experience.</h2>
+        <p class="lede reveal" style="margin-top:18px">
           Learn from professional campaign experience and a mentorship format focused on
           application, review and improvement.
         </p>
-        <ul class="stats stats--big">
+        <ul class="stats stats--big reveal">
           {mentorStats.map((s) => (
             <li><b>{s.n}</b><span>{s.s}</span></li>
           ))}
@@ -260,13 +280,13 @@ const schema = [
     <!-- ───────────────── programme ───────────────── -->
     <section class="section" id="programme">
       <div class="wrap">
-        <p class="eyebrow">The flagship programme</p>
-        <h2>10-Day Meta Ads Mentorship Programme</h2>
-        <p class="lede" style="margin-top:18px">
+        <p class="eyebrow reveal">The flagship programme</p>
+        <h2 class="reveal">10-Day Meta Ads Mentorship Programme</h2>
+        <p class="lede reveal" style="margin-top:18px">
           A structured, live online programme for beginners, freelancers, business owners and
           working digital marketers who want to develop practical Meta Ads skills.
         </p>
-        <div class="grid grid--3" style="margin-top:36px">
+        <div class="grid grid--3 reveal" style="margin-top:36px">
           {programme.map((c) => (
             <article class="card">
               <h3>{c.h}</h3>
@@ -284,13 +304,13 @@ const schema = [
     <!-- ───────────────── curriculum ───────────────── -->
     <section class="section" id="curriculum">
       <div class="wrap">
-        <p class="eyebrow">Day-by-day curriculum</p>
-        <h2>What you will cover in 10 days.</h2>
-        <p class="lede" style="margin-top:18px">
+        <p class="eyebrow reveal">Day-by-day curriculum</p>
+        <h2 class="reveal">What you will cover in 10 days.</h2>
+        <p class="lede reveal" style="margin-top:18px">
           Each day combines concepts, live practical demonstrations, student practice and Q&amp;A.
         </p>
 
-        <div class="days">
+        <div class="days reveal">
           {CURRICULUM.map((d, i) => (
             <details class="day" open={i === 0}>
               <summary>
@@ -322,9 +342,9 @@ const schema = [
     <!-- ───────────────── journey ───────────────── -->
     <section class="section">
       <div class="wrap">
-        <p class="eyebrow">The learning journey</p>
-        <h2>Five phases, ten days.</h2>
-        <ol class="stages">
+        <p class="eyebrow reveal">The learning journey</p>
+        <h2 class="reveal">Five phases, ten days.</h2>
+        <ol class="stages reveal">
           {STAGES.map((s) => (
             <li class="card">
               <b class="stages__d">{s.days}</b>
@@ -339,9 +359,9 @@ const schema = [
     <!-- ───────────────── how you will learn ───────────────── -->
     <section class="section">
       <div class="wrap">
-        <p class="eyebrow">Mentorship style</p>
-        <h2>How you will learn.</h2>
-        <div class="grid grid--2" style="margin-top:36px">
+        <p class="eyebrow reveal">Mentorship style</p>
+        <h2 class="reveal">How you will learn.</h2>
+        <div class="grid grid--2 reveal" style="margin-top:36px">
           {STYLE.map((c) => (
             <article class="card"><h3>{c.h}</h3><p>{c.p}</p></article>
           ))}
@@ -352,12 +372,12 @@ const schema = [
     <!-- ───────────────── testimonials ───────────────── -->
     <section class="section" id="words">
       <div class="wrap">
-        <p class="eyebrow">In their own words</p>
-        <h2>Messages from students and clients.</h2>
-        <p class="lede" style="margin-top:18px">
+        <p class="eyebrow reveal">In their own words</p>
+        <h2 class="reveal">Messages from students and clients.</h2>
+        <p class="lede reveal" style="margin-top:18px">
           Unedited screenshots from students and clients. Personal phone numbers have been removed.
         </p>
-        <div class="shots">
+        <div class="shots reveal">
           {TESTIMONIALS.map((t) => (
             <figure>
               <img src={t.src} width={t.w} height={t.h} alt={t.alt} loading="lazy" decoding="async" />
@@ -371,9 +391,9 @@ const schema = [
     <!-- ───────────────── inclusions ───────────────── -->
     <section class="section">
       <div class="wrap">
-        <p class="eyebrow">Included in the programme</p>
-        <h2>Resources and support to reinforce your learning.</h2>
-        <div class="grid grid--3" style="margin-top:36px">
+        <p class="eyebrow reveal">Included in the programme</p>
+        <h2 class="reveal">Resources and support to reinforce your learning.</h2>
+        <div class="grid grid--3 reveal" style="margin-top:36px">
           {inclusions.map((c) => (
             <article class="card">
               <h3>{c.h}</h3>
@@ -397,9 +417,9 @@ const schema = [
     <section class="section">
       <div class="wrap split">
         <div>
-          <p class="eyebrow">After the live programme</p>
-          <h2>Continue learning with post-programme support.</h2>
-          <p class="lede" style="margin-top:22px">
+          <p class="eyebrow reveal">After the live programme</p>
+          <h2 class="reveal">Continue learning with post-programme support.</h2>
+          <p class="lede reveal" style="margin-top:22px">
             The programme brochure outlines a proposed 30-day support period to help students work
             through questions as they apply what they have learned.
           </p>
@@ -422,13 +442,13 @@ const schema = [
     <!-- ───────────────── final project ───────────────── -->
     <section class="section">
       <div class="wrap">
-        <p class="eyebrow">Final campaign project</p>
-        <h2>Bring the learning together.</h2>
-        <p class="lede" style="margin-top:18px">
+        <p class="eyebrow reveal">Final campaign project</p>
+        <h2 class="reveal">Bring the learning together.</h2>
+        <p class="lede reveal" style="margin-top:18px">
           As part of the programme, students work towards presenting a campaign strategy that
           demonstrates their understanding of the key stages of Meta advertising.
         </p>
-        <div class="grid grid--3" style="margin-top:36px">
+        <div class="grid grid--3 reveal" style="margin-top:36px">
           {project.map((c) => (
             <article class="card"><h3>{c.h}</h3><p>{c.p}</p></article>
           ))}
@@ -439,9 +459,9 @@ const schema = [
     <!-- ───────────────── faq ───────────────── -->
     <section class="section" id="faq">
       <div class="wrap">
-        <p class="eyebrow">Frequently asked questions</p>
-        <h2>Before you enrol.</h2>
-        <div class="faq">
+        <p class="eyebrow reveal">Frequently asked questions</p>
+        <h2 class="reveal">Before you enrol.</h2>
+        <div class="faq reveal">
           {FAQS.map((f) => (
             <details>
               <summary>
@@ -458,19 +478,19 @@ const schema = [
     <!-- ───────────────── cta ───────────────── -->
     <section class="section" id="enrol">
       <div class="wrap">
-        <p class="eyebrow">Fee</p>
-        <h2>{ENROLMENT.fee} {ENROLMENT.feeUnit}.</h2>
-        <p class="lede" style="margin-top:18px">
+        <p class="eyebrow reveal">Fee</p>
+        <h2 class="reveal">{ENROLMENT.fee} {ENROLMENT.feeUnit}.</h2>
+        <p class="lede reveal" style="margin-top:18px">
           Ten days, two hours a day, twenty live hours in all. Message us on WhatsApp for the next
           start date and the session times.
         </p>
         <p class="note" style="margin:18px 0 44px">
           Any live advertising spend during the practical sessions is separate from the programme fee.
         </p>
-        <div class="cta">
+        <div class="cta reveal">
           <div>
             <p class="eyebrow" style="color:#c9d4ff">Tisvia Marketing Academy</p>
-            <h2>Build your Meta Ads skillset.</h2>
+            <h2 class="reveal">Build your Meta Ads skillset.</h2>
             <p class="cta__p">Message us and we'll send the next start date and joining details.</p>
           </div>
           <a class="btn cta__btn" href={enquiry} target="_blank" rel="noopener">
@@ -495,9 +515,54 @@ const schema = [
       <small>&copy; {new Date().getFullYear()} Tisvia Marketing Academy. All rights reserved.</small>
     </div>
   </footer>
+<script is:inline>
+  (() => {
+    const root = document.documentElement;
+    const calm = matchMedia('(prefers-reduced-motion: reduce)');
+
+    // Only hide things if we can be sure we can show them again.
+    if (!calm.matches && 'IntersectionObserver' in window) {
+      root.classList.add('js-reveal');
+
+      const seen = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (!e.isIntersecting) continue;
+            e.target.classList.add('is-in');
+            seen.unobserve(e.target);
+          }
+        },
+        { rootMargin: '0px 0px -12% 0px', threshold: 0.08 }
+      );
+
+      const items = document.querySelectorAll('.reveal');
+      for (const el of items) seen.observe(el);
+
+      // Safety net: if the observer never reports anything, show everything
+      // rather than leave the page blank.
+      setTimeout(() => {
+        if (!document.querySelector('.reveal.is-in')) root.classList.remove('js-reveal');
+      }, 2500);
+    }
+
+    // The bar is transparent over the hero, solid once you leave it.
+    const sentinel = document.getElementById('top-sentinel');
+    const bar = document.querySelector('.bar');
+    if (sentinel && bar && 'IntersectionObserver' in window) {
+      new IntersectionObserver(
+        ([e]) => bar.classList.toggle('bar--over', e.isIntersecting),
+        { rootMargin: '-62px 0px 0px 0px' }
+      ).observe(document.querySelector('.hero'));
+    }
+  })();
+</script>
+
 </Layout>
 
 <style>
+  /* height of the sticky bar; the hero slides under it */
+  .bar, .hero { --bar-h: 62px; }
+
   .skip {
     position: absolute;
     left: -9999px;
@@ -519,7 +584,20 @@ const schema = [
     background: rgba(255, 255, 255, .88);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
+    transition: background-color .3s ease, border-color .3s ease;
   }
+
+  /* over the gradient hero: no plate, light type */
+  .bar--over {
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom-color: transparent;
+  }
+  .bar--over .bar__nav a { color: rgba(255, 255, 255, .8); }
+  .bar--over .bar__nav a:hover { color: #fff; }
+  .bar--over .bar__brand img { filter: brightness(0) invert(1); }
+  .bar--over .bar__cta { background: #fff; color: var(--blue-deep); }
+  .bar--over .bar__cta:hover { background: #e8ecff; }
   .bar__inner {
     display: flex;
     align-items: center;
@@ -545,18 +623,134 @@ const schema = [
 
   /* ---- hero ---- */
   .hero {
-    padding-top: clamp(56px, 9vw, 104px);
-    background:
-      radial-gradient(56rem 36rem at 86% -18%, var(--blue-wash), transparent 70%),
-      var(--bg);
+    position: relative;
+    /* pull the hero up under the sticky bar so the gradient runs edge to edge */
+    margin-top: calc(-1 * var(--bar-h));
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #0b1a6b;
+    isolation: isolate;
   }
+
+  .hero__bg { position: absolute; inset: 0; z-index: -1; }
+
+  /* Three slow blobs. Only transform and opacity move, so this stays on the
+     compositor and does not repaint the page. */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    will-change: transform;
+  }
+
+  .blob--1 {
+    width: 62vmax; height: 62vmax;
+    top: -22vmax; left: -14vmax;
+    background: #3d5afe;
+    opacity: .85;
+    animation: drift1 24s ease-in-out infinite alternate;
+  }
+  .blob--2 {
+    width: 54vmax; height: 54vmax;
+    bottom: -20vmax; right: -12vmax;
+    background: #6f8bff;
+    opacity: .7;
+    animation: drift2 30s ease-in-out infinite alternate;
+  }
+  .blob--3 {
+    width: 40vmax; height: 40vmax;
+    top: 26%; left: 42%;
+    background: #122ea8;
+    opacity: .85;
+    animation: drift3 26s ease-in-out infinite alternate;
+  }
+
+  @keyframes drift1 {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to   { transform: translate3d(12vmax, 8vmax, 0) scale(1.14); }
+  }
+  @keyframes drift2 {
+    from { transform: translate3d(0, 0, 0) scale(1.1); }
+    to   { transform: translate3d(-14vmax, -9vmax, 0) scale(1); }
+  }
+  @keyframes drift3 {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to   { transform: translate3d(-10vmax, 11vmax, 0) scale(1.2); }
+  }
+
+  .hero__inner { text-align: center; }
+
   .hero h1 {
-    font-size: clamp(38px, 6.6vw, 76px);
+    color: #fff;
+    font-size: clamp(32px, 4.3vw, 56px);
     font-weight: 800;
     letter-spacing: -0.045em;
+    line-height: 1.08;
+    margin-inline: auto;
+    text-wrap: balance;
   }
-  .hero h1 em { font-style: normal; color: var(--blue); }
-  .hero__lede { margin-top: 24px; }
+  /* below this the line cannot fit, so let it break cleanly in two */
+  @media (max-width: 880px) {
+    .hero h1 { max-width: 16ch; }
+  }
+  .hero h1 em { font-style: normal; color: #a9bcff; }
+
+  /* ---- scroll cue ---- */
+  .cue {
+    position: absolute;
+    bottom: clamp(22px, 4vh, 40px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    color: rgba(255, 255, 255, .72);
+    transition: color .2s ease;
+  }
+  .cue:hover { color: #fff; }
+
+  .cue__txt {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+
+  .cue__line {
+    width: 1px;
+    height: 46px;
+    background: rgba(255, 255, 255, .26);
+    overflow: hidden;
+    display: block;
+  }
+  .cue__line span {
+    display: block;
+    width: 100%;
+    height: 50%;
+    background: #fff;
+    animation: cue 2.2s cubic-bezier(.7, 0, .3, 1) infinite;
+  }
+  @keyframes cue {
+    0%   { transform: translateY(-100%); }
+    60%  { transform: translateY(200%); }
+    100% { transform: translateY(200%); }
+  }
+
+  /* ---- reveal on scroll ---- */
+  :global(.js-reveal) .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  :global(.js-reveal) .reveal.is-in {
+    opacity: 1;
+    transform: none;
+    transition: opacity .7s cubic-bezier(.22, .61, .36, 1),
+                transform .7s cubic-bezier(.22, .61, .36, 1);
+  }
+
   .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 
   /* ---- headings ---- */

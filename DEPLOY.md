@@ -84,7 +84,14 @@ origin, in a 186 x 219 box:
 | right wedge | `(136,0) (186,0) (186,102)`         |
 
 It lives in two places that must stay in step: `public/favicon.svg`
-(hand-written) and the generator that emits the PNG/ICO set.
+(hand-written) and `tools/mkicon.py`, which emits the PNG and ICO set —
+`python3 tools/mkicon.py` from the repo root.
+
+That script writes the `.ico` container itself rather than using Pillow's ICO
+writer, which resizes one source image to the sizes it is given and silently
+drops any larger than that source. Saving from the 16px frame shipped a
+**single-frame 16x16 icon**; check `Image.open('public/favicon.ico').ico.sizes()`
+returns all four.
 
 The icon links carry `?v=2`. Images are served with a one-week
 `Cache-Control`, so a browser that already has the old mark keeps showing it

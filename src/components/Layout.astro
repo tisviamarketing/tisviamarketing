@@ -42,11 +42,11 @@ const image = ogImage ?? `${origin}/og.png`;
   {canonical && <link rel="canonical" href={canonical} />}
   {noindex && <meta name="robots" content="noindex, follow" />}
 
-  <!-- Manrope is self-hosted: no third-party connection, no render-blocking
+  <!-- Inter is self-hosted: no third-party connection, no render-blocking
        stylesheet from another origin. One variable file covers 400–800. -->
   <link
     rel="preload"
-    href="/f/manrope-latin.woff2"
+    href="/f/inter-latin.woff2"
     as="font"
     type="font/woff2"
     crossorigin
@@ -71,11 +71,12 @@ const image = ogImage ?? `${origin}/og.png`;
   <meta name="theme-color" content={themeColor} />
 
   <!-- SVG first for browsers that take it, .ico as the fallback every
-       browser and crawler still asks for at the root. -->
-  <link rel="icon" href="/favicon.ico" sizes="32x32" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
+       browser and crawler still asks for at the root.
+       ?v= busts the one-week image cache; bump it when the artwork changes. -->
+  <link rel="icon" href="/favicon.ico?v=2" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
+  <link rel="manifest" href="/site.webmanifest?v=2" />
 
   {schema.map((s) => (
     <script type="application/ld+json" set:html={JSON.stringify(s)} />

@@ -1,7 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Tisvia">
   <rect width="100" height="100" rx="16" fill="#3d5afe"/>
-  <g fill="#fff" transform="translate(31.9 20) scale(0.274)">
-    <path d="M0 0h52L0 101Z"/>
-    <path d="M54 0h78v219H54Z"/>
+  <!-- Three pieces: left wedge, stem, right wedge. Geometry measured off
+       logo-marketing.png; see DEPLOY.md. Dropping the right wedge turns the
+       mark into a "1", which is what the old icon did. -->
+  <g fill="#fff" transform="translate(23.6 19) scale(0.2831)">
+    <path d="M0 0h54L0 102Z"/>
+    <path d="M55 0h84v219H55Z"/>
+    <path d="M136 0h50v102Z"/>
   </g>
 </svg>

@@ -1,0 +1,185 @@
+---
+/**
+ * Shared chrome for the policy pages.
+ *
+ * One component, two sites: `site` picks the logo, the home link and the
+ * footer wording. The pages themselves are plain prose — no reveal script,
+ * no gradients, nothing to load.
+ */
+import Layout from './Layout.astro';
+import Icon from './Icon.astro';
+import { CONTACT, SITES, wa } from '../data/site';
+
+interface Props {
+  site: 'agency' | 'academy';
+  title: string;
+  heading: string;
+  description: string;
+  updated: string;
+}
+
+const { site, title, heading, description, updated } = Astro.props;
+
+const isAcademy = site === 'academy';
+const origin = isAcademy ? SITES.academy : SITES.agency;
+const brand = isAcademy ? 'Tisvia Marketing Academy' : 'Tisvia Marketing';
+const logo = isAcademy ? '/logo-academy.png' : '/logo-marketing.png';
+const logoH = isAcademy ? 225 : 226;
+const enquiry = wa(
+  isAcademy ? "Hi, I'm interested in the performance marketing course." : 'Hi Tisvia, I have a question.'
+);
+const other = isAcademy
+  ? { href: SITES.agency, label: 'Tisvia Marketing' }
+  : { href: SITES.academy, label: 'Tisvia Academy' };
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={`${origin}${Astro.url.pathname}`}
+  themeColor="#ffffff"
+>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="bar">
+    <div class="wrap bar__inner">
+      <a href="/" class="bar__brand" aria-label={`${brand} — home`}>
+        <img src={logo} width="420" height={logoH} alt={brand} />
+      </a>
+      <a class="bar__back" href="/">Back to site</a>
+    </div>
+  </header>
+
+  <main id="main" class="doc">
+    <div class="wrap doc__inner">
+      <h1>{heading}</h1>
+      <p class="updated">Last updated {updated}</p>
+      <slot />
+
+      <section class="contact">
+        <h2>Contact</h2>
+        <p>
+          {brand}<br />
+          {CONTACT.location}<br />
+          Email <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a><br />
+          WhatsApp <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener">
+            +{CONTACT.whatsapp}
+          </a>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__inner">
+      <p>&copy; {new Date().getFullYear()} {brand}</p>
+      <div class="foot__right">
+        <nav class="foot__social" aria-label={`${brand} elsewhere`}>
+          <a href={enquiry} aria-label="WhatsApp" title="WhatsApp" target="_blank" rel="noopener"><Icon name="whatsapp" /></a>
+          <a href={CONTACT.instagram} aria-label="Instagram" title="Instagram" target="_blank" rel="noopener"><Icon name="instagram" /></a>
+          <a href={CONTACT.linkedin} aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener"><Icon name="linkedin" /></a>
+          <a href={`mailto:${CONTACT.email}`} aria-label="Email" title="Email"><Icon name="mail" /></a>
+        </nav>
+        <nav class="foot__links" aria-label="Policies">
+          <a href="/terms/">Terms</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/refund/">Refunds &amp; cancellation</a>
+          <a href={other.href}>{other.label}</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .skip {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--blue);
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 0 0 8px 0;
+    font-weight: 600;
+    z-index: 20;
+  }
+  .skip:focus { left: 0; }
+
+  .bar { border-bottom: 1px solid var(--line); }
+  .bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 62px;
+  }
+  .bar__brand img { width: 84px; height: auto; }
+  .bar__back { font-size: 14.5px; font-weight: 600; color: var(--blue-deep); }
+  .bar__back:hover { text-decoration: underline; }
+
+  .doc { padding-block: clamp(44px, 7vw, 84px); }
+  .doc__inner { max-width: 70ch; }
+
+  .doc h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    margin-bottom: 10px;
+  }
+
+  .updated {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-bottom: clamp(30px, 4vw, 44px);
+  }
+
+  /* the prose comes in through the slot, so these have to be global */
+  .doc__inner :global(h2) {
+    font-size: clamp(19px, 2.2vw, 23px);
+    margin-top: clamp(34px, 4.5vw, 48px);
+    margin-bottom: 12px;
+  }
+  .doc__inner :global(p) { margin-bottom: 14px; }
+  .doc__inner :global(ul) {
+    list-style: disc;
+    padding-left: 22px;
+    margin-bottom: 14px;
+  }
+  .doc__inner :global(li) { margin-bottom: 8px; }
+  .doc__inner :global(a) { color: var(--blue-deep); text-decoration: underline; }
+  .doc__inner :global(strong) { color: var(--ink); font-weight: 700; }
+
+  .contact :global(p) { margin-bottom: 0; }
+
+  .foot { border-top: 1px solid var(--line); padding-block: 30px; }
+  .foot__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 30px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .foot__right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 26px;
+  }
+  .foot__links { display: flex; gap: 12px 20px; flex-wrap: wrap; }
+  .foot__links a { color: var(--body); }
+  .foot__links a:hover { color: var(--blue-deep); text-decoration: underline; }
+
+  .foot__social { display: flex; gap: 8px; }
+  .foot__social a {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--body);
+    transition: color .2s ease, border-color .2s ease, background-color .2s ease;
+  }
+  .foot__social a:hover { color: #fff; background: var(--blue); border-color: var(--blue); }
+  .foot__social :global(svg) { width: 16px; height: 16px; }
+</style>

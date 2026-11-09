@@ -5,7 +5,7 @@ import { CONTACT, SITES, wa } from '../../data/site';
 
 const title = 'Tisvia Marketing — Performance Marketing Agency in Kerala';
 const description =
-  'Tisvia Marketing is a data-driven performance marketing agency. Meta and Google Ads, lead generation and creative built around measurable business growth.';
+  'Tisvia Marketing is a performance marketing agency. Meta and Google Ads built to bring leads, sales and a measurable return on ad spend.';
 
 const enquiry = wa("Hi Tisvia, I'd like to talk about marketing for my business.");
 
@@ -30,7 +30,6 @@ const schema = [
     email: CONTACT.email,
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Thrissur',
       addressRegion: 'Kerala',
       addressCountry: 'IN',
     },
@@ -42,7 +41,7 @@ const schema = [
       'Google Ads',
       'Performance marketing',
       'Lead generation',
-      'Social media management',
+      'Return on ad spend',
     ],
   },
   {
@@ -61,7 +60,7 @@ const schema = [
   canonical={`${SITES.agency}/`}
   schema={schema}
   themeColor="#0b1a6b"
-  ogImageAlt="Tisvia Marketing — performance marketing agency in Thrissur, Kerala"
+  ogImageAlt="Tisvia Marketing — performance marketing agency in Kerala"
 >
   <a class="skip" href="#main">Skip to content</a>
 
@@ -88,18 +87,12 @@ const schema = [
       </header>
 
       <main id="main" class="hero__body">
-        <p class="eyebrow">Performance marketing</p>
-
         <h1>Turning marketing into <br /><em>leads and sales.</em></h1>
 
         <p class="lede">
-          Tisvia Marketing is a data-driven performance marketing agency for businesses that want more
-          than just an online presence. We bring strategy, paid advertising, social media and
-          creative execution together to support measurable business growth.
-        </p>
-
-        <p class="sub">
-          Marketing designed around your business objectives, audience and customer journey.
+          Tisvia Marketing is a performance marketing agency. We plan, run and optimise paid
+          campaigns on Meta and Google, and we are judged on the numbers that matter to you —
+          cost per lead, cost per sale and return on ad spend.
         </p>
 
         <div class="actions">
@@ -109,7 +102,7 @@ const schema = [
           <a class="btn btn--line" href={`mailto:${CONTACT.email}`}>Email us</a>
         </div>
 
-        <nav class="socials" aria-label="Tisvia Marketing on social media">
+        <nav class="socials" aria-label="Tisvia Marketing elsewhere">
           {socials.map((s) => (
             <a
               href={s.href}
@@ -128,6 +121,11 @@ const schema = [
         <span>Tisvia Marketing</span>
         <span>{CONTACT.location}</span>
         <span>&copy; {new Date().getFullYear()}</span>
+        <nav class="hero__legal" aria-label="Policies">
+          <a href="/terms/">Terms</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/refund/">Refunds &amp; cancellation</a>
+        </nav>
       </footer>
     </div>
   </div>
@@ -238,15 +236,13 @@ const schema = [
 
   .hero__body { align-self: center; }
 
-  .eyebrow { color: #a9bcff; }
-
   h1 {
     color: #fff;
-    font-size: clamp(40px, 7vw, 82px);
+    font-size: clamp(38px, 6.4vw, 74px);
     font-weight: 800;
-    letter-spacing: -0.055em;
-    line-height: 1;
-    max-width: 15ch;
+    letter-spacing: -0.022em;
+    line-height: 1.08;
+    max-width: 16ch;
   }
   h1 em { font-style: normal; color: #a9bcff; }
 
@@ -255,15 +251,9 @@ const schema = [
     margin-top: clamp(22px, 3vh, 30px);
     max-width: 54ch;
     font-size: clamp(16.5px, 1.9vw, 19px);
-    line-height: 1.55;
+    line-height: 1.65;
+    letter-spacing: 0;
     color: rgba(255, 255, 255, .84);
-  }
-
-  .sub {
-    margin-top: 14px;
-    max-width: 52ch;
-    font-size: 15.5px;
-    color: rgba(255, 255, 255, .6);
   }
 
   .actions {
@@ -304,11 +294,28 @@ const schema = [
   .hero__foot {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 8px 22px;
     padding-top: 22px;
     border-top: 1px solid rgba(255, 255, 255, .16);
     font-size: 13.5px;
     color: rgba(255, 255, 255, .58);
+  }
+
+  .hero__legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin-left: auto;
+  }
+  .hero__legal a {
+    color: rgba(255, 255, 255, .72);
+    transition: color .2s ease;
+  }
+  .hero__legal a:hover { color: #fff; text-decoration: underline; }
+
+  @media (max-width: 720px) {
+    .hero__legal { margin-left: 0; width: 100%; }
   }
 
   @media (max-width: 720px) {
@@ -318,8 +325,7 @@ const schema = [
   /* the whole page is one screen, so on a phone it has to actually fit one */
   @media (max-width: 560px) {
     .hero__inner { gap: clamp(26px, 4vh, 44px); }
-    .lede { font-size: 15.5px; line-height: 1.55; }
-    .sub { font-size: 14px; margin-top: 12px; }
+    .lede { font-size: 15.5px; line-height: 1.6; }
     .socials { margin-top: 24px; }
   }
 

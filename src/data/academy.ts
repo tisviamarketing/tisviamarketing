@@ -11,7 +11,7 @@
  *  - no result, income or placement is guaranteed.
  */
 
-/** The ten days, one line each. Titles only — the detail lives in the phases. */
+/** The ten days, one line each. This is the syllabus the page shows. */
 export const DAYS = [
   { n: '01', t: 'Meta ads and the funnel' },
   { n: '02', t: 'Business Manager and tracking' },
@@ -25,48 +25,8 @@ export const DAYS = [
   { n: '10', t: 'Campaign audit and career' },
 ] as const;
 
-/** Three-card timeline across the ten days. */
-export const PHASES = [
-  {
-    days: 'Days 1–4',
-    title: 'Foundation',
-    body: 'The Meta ecosystem, Business Manager, the Pixel and Conversions API, campaign objectives, audiences, creative and copy.',
-  },
-  {
-    days: 'Days 5–8',
-    title: 'Campaigns',
-    body: 'Lead generation, WhatsApp and e-commerce campaigns. You launch a live campaign and then read its numbers back.',
-  },
-  {
-    days: 'Days 9–10',
-    title: 'Scale',
-    body: 'Scaling, creative fatigue, a real campaign audit, client reporting and pricing your own service.',
-  },
-] as const;
 
-/** Day 7, shown on the page as a sample of what a session actually is. */
-export const SAMPLE_DAY = {
-  label: 'Day 7',
-  title: 'Launch a live campaign',
-  intro: 'What you actually do in the session:',
-  steps: [
-    'Build a campaign end to end in Ads Manager',
-    'Choose the budget, the placements and the audience you argued for on Day 3',
-    'Upload the creative, write the copy, publish',
-    'Handle the policy checks and rejections when they come',
-  ],
-  close: 'You leave the session with a campaign that is running.',
-  note: 'Any live advertising spend is separate from the programme fee.',
-} as const;
 
-/** What is missing for most people who have already watched the tutorials. */
-export const PROBLEM = [
-  'You have watched the tutorials and still cannot structure a campaign.',
-  'The Pixel fires, or it does not, and you cannot tell which.',
-  'Cost per lead climbs and you do not know which lever to pull.',
-  'You can launch an ad. You cannot read the report.',
-  'Nobody has ever looked at your campaign and told you what is wrong with it.',
-];
 
 export const INCLUDED = [
   '10 live sessions, 2 hours a day',

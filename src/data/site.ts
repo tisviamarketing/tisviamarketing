@@ -8,7 +8,7 @@ export const CONTACT = {
   email: 'tisviamarketing@gmail.com',
   instagram: 'https://www.instagram.com/tisviamarketing/',
   linkedin: 'https://www.linkedin.com/in/tisminmanoj/',
-  location: 'Thrissur, Kerala, India',
+  location: 'Kerala, India',
 } as const;
 
 export const SITES = {

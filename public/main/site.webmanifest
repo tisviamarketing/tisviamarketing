@@ -1,15 +1,28 @@
 {
   "name": "Tisvia Marketing",
   "short_name": "Tisvia",
-  "description": "Performance marketing agency. Meta and Google Ads, lead generation and creative.",
+  "description": "Performance marketing agency. Meta and Google Ads that bring leads, sales and return on ad spend.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#0b1a6b",
   "theme_color": "#0b1a6b",
   "icons": [
-    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "/icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "/icon-192.png?v=2",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png?v=2",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-maskable.png?v=2",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

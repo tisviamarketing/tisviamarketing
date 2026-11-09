@@ -59,8 +59,9 @@ These are the things that made the page lag, and they stay fixed:
 - **No `filter: blur()` on the hero.** The moving gradient is three
   `radial-gradient` circles moved by `transform`. A blurred box re-renders an
   offscreen buffer every frame and is what killed it on a phone.
-- **Manrope is self-hosted** in `public/f/` — one variable woff2 per subset,
-  preloaded. No connection to a font CDN, nothing third-party blocking render.
+- **Inter is self-hosted** in `public/f/` — one variable woff2 per subset
+  (latin, latin-ext; latin-ext carries ₹ U+20B9), preloaded. No connection to
+  a font CDN, nothing third-party blocking render.
 - **No `content-visibility` on sections.** It skips layout, so a jump to
   `#faq` lands in the wrong place. Sections use `contain: layout` instead.
 - `backdrop-filter` on the sticky bar is **off below 880px**.
@@ -69,11 +70,26 @@ These are the things that made the page lag, and they stay fixed:
 
 ## Icons
 The favicon is the Tisvia "T" knocked out of a blue tile, not the logo PNG —
-a wordmark is unreadable at 16px. Geometry was measured off
-`logo-marketing.png` and lives in two places that must stay in step:
-`public/favicon.svg` (hand-written) and the generator comments. The mark is
-132 x 219 in its own space: a wedge `M0 0 h52 L0 101 Z` and a stem at
-`x 54, w 78, h 219`.
+a wordmark is unreadable at 16px.
+
+**The mark is three pieces, not two.** Shipping only the first two turns it
+into a "1", which is exactly what the first version did. Geometry measured off
+`logo-marketing.png` by alpha profiling, with the mark's top-left at the
+origin, in a 186 x 219 box:
+
+| piece       | geometry                            |
+| ----------- | ----------------------------------- |
+| left wedge  | `(0,0) (54,0) (0,102)`              |
+| stem        | `x 55..139, y 0..219`               |
+| right wedge | `(136,0) (186,0) (186,102)`         |
+
+It lives in two places that must stay in step: `public/favicon.svg`
+(hand-written) and the generator that emits the PNG/ICO set.
+
+The icon links carry `?v=2`. Images are served with a one-week
+`Cache-Control`, so a browser that already has the old mark keeps showing it
+until that query string changes — **bump it whenever the artwork changes**,
+in `Layout.astro` and in both `site.webmanifest` files.
 
 Shipped at the output root, so both hostnames share them:
 `favicon.ico` (16/32/48/64), `favicon.svg`, `apple-touch-icon.png` (180,
@@ -82,6 +98,27 @@ square — iOS rounds it itself), `icon-192.png`, `icon-512.png` and
 
 `site.webmanifest` is per host, in `public/main/` and `public/academy/`,
 because the name and theme colour differ. Its icons point at the root files.
+
+## Type
+Inter, not Manrope. Inter is already a tight, even face, so the tracking is
+light — `-0.02em` on display, `0` on body. **Do not push headings past
+`-0.025em`**; the previous `-0.045em` to `-0.06em` settings read as congested.
+
+## Policy pages
+Three per host, built from `src/components/Legal.astro`:
+`/terms/`, `/privacy/`, `/refund/`. Each site has its own — the agency ones
+are about retainers, project work and media spend; the academy ones are about
+course enrolment, recordings, the WhatsApp group and the fee.
+
+**The numbers in the academy refund policy are a business decision, not a
+technical one**: full refund 7+ days before a batch, 50% inside 7 days and
+before day 1, none once the first session is delivered, one free transfer with
+48 hours' notice. Change them in `src/pages/academy/refund.astro`.
+
+Legal qualifiers that used to sit under the academy price box now live only in
+the FAQ and in `/terms/` — live ad spend is separate from the fee, and the
+certificate is conditional on the assignments and the final assessment. If the
+FAQ is ever cut, those have to land somewhere else on the page.
 
 ## Accessibility rules that are load-bearing
 - `--muted` is `#6b7284`: 4.81:1 on white and 4.53:1 on `--bg-soft`. The old

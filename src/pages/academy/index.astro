@@ -2,36 +2,26 @@
 import Layout from '../../components/Layout.astro';
 import Icon from '../../components/Icon.astro';
 import { CONTACT, SITES, wa } from '../../data/site';
-import {
-  DAYS,
-  ENROLMENT,
-  FAQS,
-  INCLUDED,
-  MENTOR_STATS,
-  PHASES,
-  PROBLEM,
-  SAMPLE_DAY,
-  TESTIMONIALS,
-} from '../../data/academy';
+import { DAYS, ENROLMENT, FAQS, INCLUDED, MENTOR_STATS, TESTIMONIALS } from '../../data/academy';
 
-const title = 'Tisvia Marketing Academy — 10-Day Live Meta Ads Mentorship';
+const title = 'Performance Marketing Course — Tisvia Marketing Academy';
 const description =
-  'Ten live Meta Ads sessions in Malayalam and English. Build, launch and optimise real campaigns in Ads Manager, with assignments and individual feedback. ₹9,999.';
+  'A 10-day live performance marketing course on Meta ads. Two hours a day, on a real ad account, in Malayalam and English. Learn to run ads that bring leads and sales. ₹9,999.';
 
-const enquiry = wa("Hi, I'm interested in the 10-Day Meta Ads Mentorship Programme.");
+const enquiry = wa("Hi, I'm interested in the performance marketing course.");
 
 const schema = [
   {
     '@context': 'https://schema.org',
     '@type': 'Course',
-    name: '10-Day Meta Ads Mentorship Programme',
+    name: '10-Day Performance Marketing Course',
     description,
     url: `${SITES.academy}/`,
     inLanguage: ['ml', 'en'],
     teaches: [
       'Meta Ads campaign structure',
       'Meta Pixel and Conversions API tracking',
-      'Audience targeting and creative strategy',
+      'Audience targeting and ad creative',
       'Lead generation and WhatsApp campaigns',
       'Performance analysis, optimisation and scaling',
     ],
@@ -63,7 +53,7 @@ const schema = [
       priceCurrency: ENROLMENT.currency,
       category: 'Paid',
       availability: 'https://schema.org/InStock',
-      url: `${SITES.academy}/#enrol`,
+      url: `${SITES.academy}/#fee`,
     },
     syllabusSections: DAYS.map((d, i) => ({
       '@type': 'Syllabus',
@@ -89,7 +79,7 @@ const schema = [
   canonical={`${SITES.academy}/`}
   schema={schema}
   ogImage={`${SITES.academy}/og.png`}
-  ogImageAlt="Tisvia Marketing Academy — 10-day live Meta Ads mentorship"
+  ogImageAlt="Tisvia Marketing Academy — 10-day live performance marketing course"
 >
   <a class="skip" href="#main">Skip to content</a>
 
@@ -112,10 +102,9 @@ const schema = [
         <img src="/logo-academy.png" width="420" height="225" alt="Tisvia Marketing Academy" fetchpriority="high" />
       </a>
       <nav class="bar__nav" aria-label="Sections">
-        <a href="#plan">The ten days</a>
+        <a href="#course">Course</a>
         <a href="#mentor">Mentor</a>
-        <a href="#enrol">Fee</a>
-        <a href="#faq">Questions</a>
+        <a href="#fee">Fee</a>
       </nav>
       <a class="btn btn--solid bar__cta" href={enquiry} target="_blank" rel="noopener">Enquire</a>
     </div>
@@ -131,87 +120,52 @@ const schema = [
       </div>
 
       <div class="wrap hero__inner">
-        <h1>Learn Meta ads by running them.</h1>
-      </div>
+        <h1>Learn performance marketing.<br />Run ads that bring sales.</h1>
 
-      <a class="cue" href="#problem" aria-label="Scroll to the programme">
-        <span class="cue__txt">Scroll</span>
-        <span class="cue__line" aria-hidden="true"><span></span></span>
-      </a>
-    </section>
-
-    <!-- ───────── 01 problem ───────── -->
-    <section class="section" id="problem">
-      <div class="wrap">
-        <p class="eyebrow reveal">01 · The gap</p>
-        <h2 class="reveal">Courses teach theory. Clients pay for campaigns.</h2>
-        <p class="lede reveal" style="margin-top:18px">
-          Ten days, two hours a day, live. You are inside a real ad account from the first week.
+        <p class="hero__sub">
+          A 10-day live course on Meta ads. Two hours a day, on a real ad account,
+          in Malayalam and English.
         </p>
 
-        <ul class="pains reveal">
-          {PROBLEM.map((p) => <li>{p}</li>)}
-        </ul>
-
-        <p class="close reveal">
-          What is missing is usually <b>practice on a live account</b> and <b>someone checking your
-          work</b>. Not another playlist.
-        </p>
-      </div>
-    </section>
-
-    <!-- ───────── 02 the ten days ───────── -->
-    <section class="section section--defer" id="plan">
-      <div class="wrap">
-        <p class="eyebrow reveal">02 · The ten days</p>
-        <h2 class="reveal">One live session a day</h2>
-        <p class="lede reveal" style="margin-top:18px">
-          Two hours, live on Zoom, Ads Manager on screen. Every session is recorded.
-        </p>
-
-        <div class="phases reveal">
-          {PHASES.map((p) => (
-            <article class="card">
-              <span class="phase__d">{p.days}</span>
-              <h3>{p.title}</h3>
-              <p>{p.body}</p>
-            </article>
-          ))}
+        <div class="hero__cta">
+          <a class="btn btn--solid" href={enquiry} target="_blank" rel="noopener">
+            <Icon name="whatsapp" /> Enquire now
+          </a>
+          <a class="btn btn--line" href="#course">See course details</a>
         </div>
+      </div>
+    </section>
 
+    <!-- ───────── 1 · the course ───────── -->
+    <section class="section" id="course">
+      <div class="wrap">
+        <h2 class="reveal">What the course is</h2>
+        <p class="lede reveal" style="margin-top:18px">
+          Ten days. One live session a day, two hours long, on Zoom with Ads Manager on screen.
+          Every session is recorded and the recordings are yours. You work in a real ad account
+          from the first week, and you get your work checked.
+        </p>
+
+        <h3 class="sub-h reveal">What you learn, day by day</h3>
         <ol class="days reveal" aria-label="The ten days">
           {DAYS.map((d) => (
             <li><span>{d.n}</span>{d.t}</li>
           ))}
         </ol>
 
-        <p class="close reveal">
-          <b>Also inside:</b> ten assignments with individual feedback, real client case studies,
-          reporting templates and checklists, and recordings of every session.
-        </p>
+        <h3 class="sub-h reveal">What you get</h3>
+        <ul class="ticks reveal">
+          {INCLUDED.map((i) => (
+            <li><Icon name="check" />{i}</li>
+          ))}
+        </ul>
       </div>
     </section>
 
-    <!-- ───────── 03 a sample day ───────── -->
-    <section class="section section--defer" id="sample">
-      <div class="wrap">
-        <p class="eyebrow reveal">03 · A sample day</p>
-        <h2 class="reveal">{SAMPLE_DAY.label}: {SAMPLE_DAY.title}</h2>
-        <p class="lede reveal" style="margin-top:18px">{SAMPLE_DAY.intro}</p>
-
-        <ol class="steps reveal">
-          {SAMPLE_DAY.steps.map((s) => <li>{s}</li>)}
-        </ol>
-
-        <p class="close reveal">{SAMPLE_DAY.close}</p>
-        <p class="note reveal" style="margin-top:10px">{SAMPLE_DAY.note}</p>
-      </div>
-    </section>
-
-    <!-- ───────── 04 mentor ───────── -->
+    <!-- ───────── 2 · mentor and reviews ───────── -->
     <section class="section section--defer" id="mentor">
       <div class="wrap">
-        <p class="eyebrow reveal">04 · Your mentor</p>
+        <h2 class="reveal">Your mentor</h2>
 
         <div class="mentor reveal">
           <picture>
@@ -233,10 +187,10 @@ const schema = [
           </picture>
 
           <div class="mentor__text">
-            <h2>Tismin Manoj</h2>
-            <p class="lede" style="margin-top:16px">
-              Performance marketer. Four years spending other people's money on Meta, from Thrissur
-              to clients abroad — and now teaching the same account work he does every day.
+            <h3>Tismin Manoj</h3>
+            <p class="lede" style="margin-top:14px">
+              Performance marketer. Four years running Meta and Google ads for clients in India
+              and abroad. He teaches the same account work he does every day.
             </p>
 
             <ul class="stats">
@@ -250,15 +204,8 @@ const schema = [
             </a>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ───────── 05 proof ───────── -->
-    <section class="section section--defer" id="proof">
-      <div class="wrap">
-        <p class="eyebrow reveal">05 · Proof</p>
-        <h2 class="reveal">What they sent afterwards</h2>
-
+        <h3 class="sub-h reveal" id="reviews">Reviews</h3>
         <div class="shots reveal">
           {TESTIMONIALS.map((t) => (
             <figure>
@@ -278,11 +225,10 @@ const schema = [
       </div>
     </section>
 
-    <!-- ───────── 06 fee ───────── -->
-    <section class="section section--defer" id="enrol">
+    <!-- ───────── 3 · fee and questions ───────── -->
+    <section class="section section--defer" id="fee">
       <div class="wrap">
-        <p class="eyebrow reveal">06 · The programme</p>
-        <h2 class="reveal">What it costs</h2>
+        <h2 class="reveal">Fee</h2>
 
         <div class="price reveal">
           <div class="price__head">
@@ -290,31 +236,12 @@ const schema = [
             <span>{ENROLMENT.feeUnit}</span>
           </div>
 
-          <ul class="ticks">
-            {INCLUDED.map((i) => (
-              <li><Icon name="check" />{i}</li>
-            ))}
-          </ul>
-
           <a class="btn btn--solid price__btn" href={enquiry} target="_blank" rel="noopener">
             <Icon name="whatsapp" /> Enquire on WhatsApp
           </a>
-
-          <p class="note">
-            Any live advertising spend during the practical sessions is separate from the fee. The
-            Certificate of Completion needs the assignments and the final assessment. A WhatsApp
-            group and doubt-clearing sessions are proposed for the weeks after the programme.
-          </p>
         </div>
-      </div>
-    </section>
 
-    <!-- ───────── 07 questions ───────── -->
-    <section class="section section--defer" id="faq">
-      <div class="wrap">
-        <p class="eyebrow reveal">07 · Questions</p>
-        <h2 class="reveal">Before you message</h2>
-
+        <h3 class="sub-h reveal" id="faq">Questions</h3>
         <div class="faq reveal">
           {FAQS.map((f) => (
             <details>
@@ -325,33 +252,25 @@ const schema = [
         </div>
       </div>
     </section>
-
-    <!-- ───────── close ───────── -->
-    <section class="section section--defer">
-      <div class="wrap">
-        <div class="cta reveal">
-          <div>
-            <h2>Ten days. One campaign running.</h2>
-            <p class="cta__p">Message Tismin for the next start date and the session times.</p>
-          </div>
-          <a class="btn cta__btn" href={enquiry} target="_blank" rel="noopener">
-            <Icon name="whatsapp" /> Enquire on WhatsApp
-          </a>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="foot">
     <div class="wrap foot__inner">
       <p><b>Tisvia Marketing Academy</b>{CONTACT.location}</p>
-      <nav class="foot__links" aria-label="Contact">
-        <a href={enquiry} target="_blank" rel="noopener">WhatsApp</a>
-        <a href={`mailto:${CONTACT.email}`}>Email</a>
-        <a href={CONTACT.instagram} target="_blank" rel="noopener">Instagram</a>
-        <a href={CONTACT.linkedin} target="_blank" rel="noopener">LinkedIn</a>
-        <a href={SITES.agency}>Tisvia Marketing</a>
-      </nav>
+      <div class="foot__right">
+        <nav class="foot__social" aria-label="Tisvia Marketing Academy elsewhere">
+          <a href={enquiry} aria-label="WhatsApp" title="WhatsApp" target="_blank" rel="noopener"><Icon name="whatsapp" /></a>
+          <a href={CONTACT.instagram} aria-label="Instagram" title="Instagram" target="_blank" rel="noopener"><Icon name="instagram" /></a>
+          <a href={CONTACT.linkedin} aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener"><Icon name="linkedin" /></a>
+          <a href={`mailto:${CONTACT.email}`} aria-label="Email" title="Email"><Icon name="mail" /></a>
+        </nav>
+        <nav class="foot__links" aria-label="Policies">
+          <a href="/terms/">Terms</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/refund/">Refunds &amp; cancellation</a>
+          <a href={SITES.agency}>Tisvia Marketing</a>
+        </nav>
+      </div>
     </div>
   </footer>
 
@@ -555,57 +474,40 @@ const schema = [
 
   .hero h1 {
     color: #fff;
-    font-size: clamp(34px, 6.4vw, 72px);
+    font-size: clamp(30px, 5.2vw, 58px);
     font-weight: 800;
-    letter-spacing: -0.055em;
-    line-height: 1;
-    max-width: 17ch;
+    letter-spacing: -0.022em;
+    line-height: 1.1;
+    max-width: 20ch;
     margin-inline: auto;
   }
 
-  /* ---- scroll cue ---- */
-  .cue {
-    position: absolute;
-    bottom: max(20px, env(safe-area-inset-bottom));
-    left: 50%;
-    transform: translateX(-50%);
-    display: grid;
-    justify-items: center;
-    gap: 10px;
-    padding: 10px 14px;
-    color: rgba(255, 255, 255, .72);
-    transition: color .2s ease;
-  }
-  .cue:hover { color: #fff; }
-
-  .cue__txt {
-    font-size: 11.5px;
-    font-weight: 600;
-    letter-spacing: .18em;
-    text-transform: uppercase;
+  .hero__sub {
+    margin: clamp(20px, 3vh, 28px) auto 0;
+    max-width: 48ch;
+    font-size: clamp(16.5px, 2vw, 20px);
+    line-height: 1.6;
+    letter-spacing: 0;
+    color: rgba(255, 255, 255, .84);
   }
 
-  .cue__line {
-    width: 1px;
-    height: 46px;
-    background: rgba(255, 255, 255, .26);
-    overflow: hidden;
-    display: block;
+  .hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: clamp(28px, 4vh, 40px);
   }
-  .cue__line span {
-    display: block;
-    width: 100%;
-    height: 50%;
-    background: #fff;
-    animation: cue 2.2s cubic-bezier(.7, 0, .3, 1) infinite;
-  }
-  @keyframes cue {
-    0%   { transform: translateY(-100%); }
-    60%  { transform: translateY(200%); }
-    100% { transform: translateY(200%); }
-  }
-  @media (max-height: 620px) {
-    .cue__line { height: 30px; }
+  /* on blue, the primary button inverts */
+  .hero__cta :global(.btn--solid) { background: #fff; color: var(--blue-deep); }
+  .hero__cta :global(.btn--solid:hover) { background: #e8ecff; }
+  .hero__cta :global(.btn--line) { border-color: rgba(255, 255, 255, .38); color: #fff; }
+  .hero__cta :global(.btn--line:hover) { border-color: #fff; background: rgba(255, 255, 255, .1); }
+
+  /* the <br> stays at every width: there is no space behind it, so hiding it
+     runs "marketing." straight into "Run". */
+  @media (max-width: 460px) {
+    .hero__cta :global(.btn) { width: 100%; }
   }
 
   /* ---- reveal on scroll ---- */
@@ -621,67 +523,19 @@ const schema = [
   }
 
   /* ---- headings ---- */
-  h2 { font-size: clamp(30px, 5.4vw, 54px); }
+  h2 { font-size: clamp(26px, 3.6vw, 38px); }
 
-  .close {
-    margin-top: clamp(28px, 4vw, 40px);
-    font-size: clamp(17px, 2.1vw, 20px);
-    line-height: 1.5;
-    letter-spacing: -0.015em;
-    max-width: 50ch;
-  }
-  .close b { color: var(--ink); font-weight: 700; }
-
-  /* ---- 01 pains ---- */
-  .pains {
-    margin-top: clamp(30px, 4vw, 44px);
-    display: grid;
-    gap: 1px;
-    background: var(--line);
-    border-block: 1px solid var(--line);
-  }
-  .pains li {
-    background: var(--bg);
-    padding: 16px 0 16px 26px;
-    position: relative;
-    font-size: clamp(17px, 2.1vw, 20px);
-    font-weight: 500;
-    line-height: 1.4;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-  }
-  .pains li::before {
-    content: '';
-    position: absolute;
-    left: 2px;
-    top: 1.05em;
-    width: 10px;
-    height: 1px;
-    background: var(--blue);
+  /* the heading inside a section; a clear step down from the section heading */
+  .sub-h {
+    font-size: clamp(18px, 2.1vw, 21px);
+    margin-top: clamp(42px, 6vw, 68px);
+    margin-bottom: 4px;
+    scroll-margin-top: 76px;
   }
 
-  /* ---- 02 phases + days ---- */
-  .phases {
-    margin-top: clamp(30px, 4vw, 44px);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-  }
-  @media (max-width: 860px) { .phases { grid-template-columns: 1fr; } }
-
-  .phase__d {
-    font-size: 12.5px;
-    font-weight: 700;
-    letter-spacing: .09em;
-    text-transform: uppercase;
-    color: var(--blue-deep);
-    display: block;
-    margin-bottom: 12px;
-  }
-  .phases h3 { font-size: 21px; }
-
+  /* ---- the ten days ---- */
   .days {
-    margin-top: 32px;
+    margin-top: 14px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0 clamp(20px, 4vw, 48px);
@@ -696,7 +550,7 @@ const schema = [
     border-top: 1px solid var(--line);
     font-size: 16.5px;
     font-weight: 500;
-    letter-spacing: -0.015em;
+    letter-spacing: 0;
     color: var(--ink);
   }
   .days li span {
@@ -708,41 +562,22 @@ const schema = [
     font-variant-numeric: tabular-nums;
   }
 
-  /* ---- 03 steps ---- */
-  .steps {
-    margin-top: clamp(26px, 3.5vw, 36px);
-    counter-reset: s;
+  /* ---- what you get ---- */
+  .ticks { display: flex; flex-direction: column; gap: 11px; margin-top: 18px; }
+  .ticks li {
     display: grid;
-    gap: 2px;
-    max-width: 62ch;
-  }
-  .steps li {
-    counter-increment: s;
-    position: relative;
-    padding: 13px 0 13px 44px;
-    border-top: 1px solid var(--line);
-    font-size: clamp(16.5px, 2vw, 19px);
-    font-weight: 500;
-    line-height: 1.45;
-    letter-spacing: -0.018em;
+    grid-template-columns: 18px 1fr;
+    gap: 12px;
+    font-size: 16.5px;
+    line-height: 1.55;
+    letter-spacing: 0;
     color: var(--ink);
   }
-  .steps li:last-child { border-bottom: 1px solid var(--line); }
-  .steps li::before {
-    content: counter(s, decimal-leading-zero);
-    position: absolute;
-    left: 0;
-    top: 15px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .08em;
-    color: var(--blue-deep);
-    font-variant-numeric: tabular-nums;
-  }
+  .ticks :global(svg) { width: 16px; height: 16px; color: var(--blue); margin-top: 4px; }
 
-  /* ---- 04 mentor ---- */
+  /* ---- mentor ---- */
   .mentor {
-    margin-top: 10px;
+    margin-top: clamp(26px, 3.5vw, 38px);
     display: grid;
     grid-template-columns: 360px 1fr;
     gap: clamp(28px, 5vw, 60px);
@@ -754,6 +589,7 @@ const schema = [
     border-radius: 16px;
     background: var(--bg-soft);
   }
+  .mentor__text h3 { font-size: clamp(22px, 2.8vw, 28px); }
   @media (max-width: 860px) {
     .mentor { grid-template-columns: 1fr; gap: 28px; }
     .mentor picture { display: block; max-width: 360px; }
@@ -790,12 +626,12 @@ const schema = [
     flex-direction: column;
     gap: 4px;
   }
-  .stats b { font-size: clamp(23px, 3.2vw, 32px); color: var(--blue); letter-spacing: -0.05em; line-height: 1; }
+  .stats b { font-size: clamp(22px, 3vw, 29px); color: var(--blue); letter-spacing: -0.02em; line-height: 1.1; }
   .stats span { font-size: 12.5px; color: var(--muted); line-height: 1.4; }
 
-  /* ---- 05 shots ---- */
+  /* ---- reviews ---- */
   .shots {
-    margin-top: clamp(30px, 4vw, 44px);
+    margin-top: 18px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: clamp(14px, 2.5vw, 26px);
@@ -814,9 +650,9 @@ const schema = [
   }
   .shots figcaption { margin-top: 11px; font-size: 13.5px; color: var(--muted); }
 
-  /* ---- 06 price ---- */
+  /* ---- fee ---- */
   .price {
-    margin-top: 6px;
+    margin-top: clamp(22px, 3vw, 30px);
     border: 1px solid var(--line);
     border-radius: 20px;
     padding: clamp(26px, 4vw, 44px);
@@ -824,32 +660,19 @@ const schema = [
   }
   .price__head { display: flex; align-items: baseline; gap: 10px; }
   .price__head b {
-    font-size: clamp(46px, 8.4vw, 76px);
+    font-size: clamp(34px, 5vw, 46px);
     color: var(--ink);
     font-weight: 800;
-    letter-spacing: -0.06em;
-    line-height: .92;
+    letter-spacing: -0.02em;
+    line-height: 1;
     font-variant-numeric: tabular-nums;
   }
   .price__head span { font-size: 14px; color: var(--muted); }
 
-  .ticks { display: flex; flex-direction: column; gap: 11px; margin-top: 26px; }
-  .ticks li {
-    display: grid;
-    grid-template-columns: 18px 1fr;
-    gap: 12px;
-    font-size: 16.5px;
-    line-height: 1.45;
-    letter-spacing: -0.015em;
-    color: var(--ink);
-  }
-  .ticks :global(svg) { width: 16px; height: 16px; color: var(--blue); margin-top: 4px; }
+  .price__btn { margin-top: 26px; width: 100%; }
 
-  .price__btn { margin-top: 28px; width: 100%; }
-  .price .note { margin-top: 18px; }
-
-  /* ---- 07 faq ---- */
-  .faq { margin-top: clamp(26px, 3.5vw, 36px); border-top: 1px solid var(--line); }
+  /* ---- questions ---- */
+  .faq { margin-top: 14px; border-top: 1px solid var(--line); }
   .faq details { border-bottom: 1px solid var(--line); }
   .faq summary {
     display: flex;
@@ -859,12 +682,12 @@ const schema = [
     cursor: pointer;
     list-style: none;
     font-weight: 600;
-    font-size: clamp(17px, 2.1vw, 19.5px);
-    letter-spacing: -0.025em;
+    font-size: clamp(16.5px, 1.9vw, 18px);
+    letter-spacing: -0.005em;
     color: var(--ink);
   }
   .faq summary::-webkit-details-marker { display: none; }
-  .faq p { padding: 0 2px 24px; max-width: 60ch; font-size: 16px; line-height: 1.6; }
+  .faq p { padding: 0 2px 24px; max-width: 62ch; font-size: 16px; line-height: 1.7; }
 
   .faq__i {
     margin-left: auto;
@@ -881,22 +704,6 @@ const schema = [
   .faq__i :global(svg) { width: 13px; height: 13px; }
   details[open] .faq__i { transform: rotate(45deg); border-color: var(--blue); color: var(--blue); }
 
-  /* ---- close ---- */
-  .cta {
-    background: var(--blue);
-    border-radius: 20px;
-    padding: clamp(28px, 5vw, 54px);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 26px;
-    flex-wrap: wrap;
-  }
-  .cta h2 { color: #fff; }
-  .cta__p { color: #eef1ff; margin-top: 12px; max-width: 38ch; font-size: clamp(16px, 1.9vw, 18px); line-height: 1.5; }
-  .cta__btn { background: #fff; color: var(--blue-deep); white-space: nowrap; }
-  .cta__btn:hover { background: #eef1ff; }
-
   /* ---- footer ---- */
   .foot { border-top: 1px solid var(--line); padding-block: 36px; }
   .foot__inner {
@@ -909,9 +716,29 @@ const schema = [
     color: var(--muted);
   }
   .foot__inner b { color: var(--ink); display: block; }
-  .foot__links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .foot__right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 28px;
+  }
+  .foot__links { display: flex; gap: 12px 20px; flex-wrap: wrap; }
   .foot__links a { color: var(--body); transition: color .2s ease; }
-  .foot__links a:hover { color: var(--blue-deep); }
+  .foot__links a:hover { color: var(--blue-deep); text-decoration: underline; }
+
+  .foot__social { display: flex; gap: 8px; }
+  .foot__social a {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--body);
+    transition: color .2s ease, border-color .2s ease, background-color .2s ease;
+  }
+  .foot__social a:hover { color: #fff; background: var(--blue); border-color: var(--blue); }
+  .foot__social :global(svg) { width: 16px; height: 16px; }
 
   /* ---- phone dock ---- */
   .dock { display: none; }
@@ -941,7 +768,7 @@ const schema = [
     .dock__p {
       font-size: 17px;
       font-weight: 800;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.01em;
       display: flex;
       align-items: baseline;
       gap: 7px;

@@ -67,6 +67,35 @@ These are the things that made the page lag, and they stay fixed:
 - Every image below the fold is `loading="lazy"` with a WebP `<picture>`
   source and explicit `width`/`height`.
 
+## Icons
+The favicon is the Tisvia "T" knocked out of a blue tile, not the logo PNG —
+a wordmark is unreadable at 16px. Geometry was measured off
+`logo-marketing.png` and lives in two places that must stay in step:
+`public/favicon.svg` (hand-written) and the generator comments. The mark is
+132 x 219 in its own space: a wedge `M0 0 h52 L0 101 Z` and a stem at
+`x 54, w 78, h 219`.
+
+Shipped at the output root, so both hostnames share them:
+`favicon.ico` (16/32/48/64), `favicon.svg`, `apple-touch-icon.png` (180,
+square — iOS rounds it itself), `icon-192.png`, `icon-512.png` and
+`icon-maskable.png` (mark inside the 80% safe zone).
+
+`site.webmanifest` is per host, in `public/main/` and `public/academy/`,
+because the name and theme colour differ. Its icons point at the root files.
+
+## Accessibility rules that are load-bearing
+- `--muted` is `#6b7284`: 4.81:1 on white and 4.53:1 on `--bg-soft`. The old
+  `#767d91` was 4.11:1 and failed AA everywhere it was used.
+- `.cta__p` is `#eef1ff` on `--blue` (4.56:1). `#dbe2ff` was 3.99:1.
+- The academy bar ships with `bar--over` because that is correct while the
+  hero fills the screen, and JS removes it after. With JS off nothing would,
+  so a `<noscript>` block forces the solid bar — otherwise white type sits
+  on a white page.
+- `<header>` and `<footer>` are siblings of `<main>`, never inside it;
+  nested, they stop being landmarks.
+- The 404 is shared by both hostnames, so every link on it is absolute, and
+  it carries `noindex` with no canonical.
+
 ## DNS (GoDaddy)
 | Type  | Name      | Value                                 |
 |-------|-----------|---------------------------------------|

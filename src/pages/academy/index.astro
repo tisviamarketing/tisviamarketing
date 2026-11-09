@@ -89,8 +89,22 @@ const schema = [
   canonical={`${SITES.academy}/`}
   schema={schema}
   ogImage={`${SITES.academy}/og.png`}
+  ogImageAlt="Tisvia Marketing Academy — 10-day live Meta Ads mentorship"
 >
   <a class="skip" href="#main">Skip to content</a>
+
+  <noscript>
+    <style>
+      .bar {
+        background: #fff !important;
+        backdrop-filter: none !important;
+        border-bottom-color: var(--line) !important;
+      }
+      .bar .bar__nav a { color: var(--body) !important; }
+      .bar .bar__brand img { filter: none !important; }
+      .bar .bar__cta { background: var(--blue) !important; color: #fff !important; }
+    </style>
+  </noscript>
 
   <header class="bar bar--over">
     <div class="wrap bar__inner">
@@ -268,6 +282,7 @@ const schema = [
     <section class="section section--defer" id="enrol">
       <div class="wrap">
         <p class="eyebrow reveal">06 · The programme</p>
+        <h2 class="reveal">What it costs</h2>
 
         <div class="price reveal">
           <div class="price__head">
@@ -341,7 +356,13 @@ const schema = [
   </footer>
 
   <!-- phone-only: the price and the button never leave the screen -->
-  <a class="dock" href={enquiry} target="_blank" rel="noopener">
+  <a
+    class="dock"
+    href={enquiry}
+    target="_blank"
+    rel="noopener"
+    aria-label={`Enquire on WhatsApp — ${ENROLMENT.fee} ${ENROLMENT.feeUnit}`}
+  >
     <span class="dock__p">{ENROLMENT.fee}<i>{ENROLMENT.feeUnit}</i></span>
     <span class="dock__b"><Icon name="whatsapp" /> Enquire</span>
   </a>
@@ -872,7 +893,7 @@ const schema = [
     flex-wrap: wrap;
   }
   .cta h2 { color: #fff; }
-  .cta__p { color: #dbe2ff; margin-top: 12px; max-width: 38ch; font-size: clamp(16px, 1.9vw, 18px); line-height: 1.5; }
+  .cta__p { color: #eef1ff; margin-top: 12px; max-width: 38ch; font-size: clamp(16px, 1.9vw, 18px); line-height: 1.5; }
   .cta__btn { background: #fff; color: var(--blue-deep); white-space: nowrap; }
   .cta__btn:hover { background: #eef1ff; }
 

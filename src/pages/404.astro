@@ -2,10 +2,16 @@
 import Layout from '../components/Layout.astro';
 import { SITES } from '../data/site';
 ---
+<!--
+  One 404 serves both hostnames, so every link here is absolute. A relative
+  "/" would send someone who mistyped an academy URL to the academy home
+  under a label that says Tisvia Marketing.
+  No canonical, and noindex: this page must never rank.
+-->
 <Layout
   title="Page not found — Tisvia"
   description="The page you were looking for does not exist."
-  canonical={`${SITES.agency}/404`}
+  noindex
 >
   <main class="nf">
     <div class="wrap">
@@ -13,7 +19,7 @@ import { SITES } from '../data/site';
       <h1>This page does not exist.</h1>
       <p class="lede">The link may be out of date, or the address mistyped.</p>
       <p class="links">
-        <a href="/">Tisvia Marketing</a>
+        <a href={SITES.agency}>Tisvia Marketing</a>
         <a href={SITES.academy}>Tisvia Academy</a>
       </p>
     </div>
@@ -22,9 +28,10 @@ import { SITES } from '../data/site';
 
 <style>
   .nf { min-height: 100svh; display: grid; place-items: center; text-align: center; }
+  .nf :global(.eyebrow) { justify-content: center; }
   .nf h1 { font-size: clamp(28px, 5vw, 46px); margin-bottom: 14px; }
   .lede { margin-inline: auto; }
-  .links { display: flex; gap: 22px; justify-content: center; margin-top: 30px; font-weight: 600; }
+  .links { display: flex; gap: 22px; justify-content: center; margin-top: 30px; font-weight: 600; flex-wrap: wrap; }
   .links a { color: var(--blue-deep); }
   .links a:hover { text-decoration: underline; }
 </style>

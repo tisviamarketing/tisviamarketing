@@ -36,7 +36,7 @@
   /* ink */
   --ink:         #0a0f1f;
   --body:        #4b5268;
-  --muted:       #767d91;
+  --muted:       #6b7284;  /* 4.8:1 on white, 4.5:1 on --bg-soft */
 
   /* surfaces */
   --bg:          #ffffff;

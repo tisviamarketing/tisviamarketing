@@ -61,8 +61,11 @@ const schema = [
   canonical={`${SITES.agency}/`}
   schema={schema}
   themeColor="#0b1a6b"
+  ogImageAlt="Tisvia Marketing — performance marketing agency in Thrissur, Kerala"
 >
-  <main class="hero">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="hero">
     <div class="hero__bg" aria-hidden="true">
       <span class="glow glow--1"></span>
       <span class="glow glow--2"></span>
@@ -84,7 +87,7 @@ const schema = [
         </a>
       </header>
 
-      <div class="hero__body">
+      <main id="main" class="hero__body">
         <p class="eyebrow">Performance marketing</p>
 
         <h1>Turning marketing into <br /><em>leads and sales.</em></h1>
@@ -119,7 +122,7 @@ const schema = [
             </a>
           ))}
         </nav>
-      </div>
+      </main>
 
       <footer class="hero__foot">
         <span>Tisvia Marketing</span>
@@ -127,10 +130,23 @@ const schema = [
         <span>&copy; {new Date().getFullYear()}</span>
       </footer>
     </div>
-  </main>
+  </div>
 </Layout>
 
 <style>
+  .skip {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: #fff;
+    color: var(--blue-deep);
+    padding: 12px 18px;
+    border-radius: 0 0 8px 0;
+    font-weight: 600;
+    z-index: 20;
+  }
+  .skip:focus { left: 0; }
+
   .hero {
     position: relative;
     min-height: 100svh;
@@ -230,7 +246,7 @@ const schema = [
     font-weight: 800;
     letter-spacing: -0.055em;
     line-height: 1;
-    max-width: 14ch;
+    max-width: 15ch;
   }
   h1 em { font-style: normal; color: #a9bcff; }
 
